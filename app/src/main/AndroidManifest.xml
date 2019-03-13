@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HireTutor"></activity>
+        <activity android:name=".ParentDashboard"></activity>
+        <activity android:name=".HireTutor" />
         <activity android:name=".ChildInfo" />
         <activity android:name=".AddNewChild" />
         <activity android:name=".SignUpParent" />
