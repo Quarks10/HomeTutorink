@@ -1,5 +1,6 @@
 package com.as.hometutorink;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 public class SignUpParent extends AppCompatActivity {
 
-    private EditText email,password;
+    private EditText email,password, fname, lname, address;
     private Button btnSignUp;
     private FirebaseAuth mAuth;
     private static final String TAG = "signup";
@@ -34,6 +35,9 @@ public class SignUpParent extends AppCompatActivity {
 
         email = findViewById(R.id.email_input);
         password = findViewById(R.id.password_input);
+        fname = findViewById(R.id.fNameInput);
+        lname = findViewById(R.id.lNameInput);
+        address = findViewById(R.id.addressInput);
         btnSignUp = findViewById(R.id.SignUpbtn);
         mAuth = FirebaseAuth.getInstance();
 
@@ -41,22 +45,18 @@ public class SignUpParent extends AppCompatActivity {
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 createAccount(email.getText().toString(),password.getText().toString());
 
-                 //dictionary to insert into database
-                /*
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("dog", "type of animal");
-                map.put("data", "type of anisme");
-                map.put("what", "type of animal");
-                // System.out.println(map.get("dog"));
+                String email_text = email.getText().toString();
+                String pass_text = password.getText().toString();
+                String fname_text = fname.getText().toString();
+                String lname_text = lname.getText().toString();
+                String address_text = address.getText().toString();
+
+                createAccount(email_text,pass_text,fname_text,lname_text,address_text);
 
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("messages");
 
-                myRef.setValue(map);
-                */
+
             }
         });
 
@@ -76,9 +76,9 @@ public class SignUpParent extends AppCompatActivity {
 
     private void updateUI() {
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        // startActivity(MainActivity);
+       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Intent toAddChild = new Intent(SignUpParent.this,AddNewChild.class);
+        startActivity(toAddChild);
         // finish();
 
     }
@@ -89,7 +89,7 @@ public class SignUpParent extends AppCompatActivity {
 
     }
 
-    private void createAccount(String email, String password) {
+    private void createAccount(String email, String password, final String fname, final String lname, final String address) {
         Log.d(TAG, "createAccount:" + email);
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -100,7 +100,8 @@ public class SignUpParent extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                           // updateUI(user);
+                            addNewParent(fname,lname,address, user);
+                            updateUI();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -111,4 +112,23 @@ public class SignUpParent extends AppCompatActivity {
                     }
                 });
     }
+
+    private void addNewParent(String fname, String lname, String address, FirebaseUser user) {
+
+
+                Map<String, String> parent_details = new HashMap<String, String>();
+                parent_details.put("first_name",  fname);
+                parent_details.put("last_name", lname);
+                parent_details.put("address", address);
+
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = database.getReference("parent");
+
+                myRef.child(user.getUid()).setValue(parent_details);
+
+
+    }
+
+
 }

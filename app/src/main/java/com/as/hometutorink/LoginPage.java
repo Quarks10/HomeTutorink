@@ -37,17 +37,13 @@ public class LoginPage extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     public void init()
     {
         currentMode = findViewById(R.id.mode_text);
         String curr_mode = getIntent().getStringExtra("mode");
-
         currentMode.setText(curr_mode);
-
     }
 
 
