@@ -69,7 +69,7 @@
             android:paddingBottom="30dp"></LinearLayout>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/mode_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="serif"

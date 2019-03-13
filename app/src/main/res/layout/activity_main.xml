@@ -98,7 +98,7 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/tutorLoginbtn"
+            android:id="@+id/TutorLoginbtn"
             android:layout_width="196dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
