@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "201661201238",
+    "firebase_url": "https://hometutorink-239dd.firebaseio.com",
+    "project_id": "hometutorink-239dd",
+    "storage_bucket": "hometutorink-239dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:201661201238:android:d106fe2e4ea88bed",
+        "android_client_info": {
+          "package_name": "com.as.hometutorink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "201661201238-2624a9dhic7vcv69bntc6hi3rq5nr6o2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.as.hometutorink",
+            "certificate_hash": "286508d9f95c0c89c3d6d2fb09c71b9f0d23608e"
+          }
+        },
+        {
+          "client_id": "201661201238-stl0moa3gtr2g003ql21941slpjl26mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApZF_xcx-wA-pCTFP9YtIEwY4NwsDOLOs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "201661201238-stl0moa3gtr2g003ql21941slpjl26mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
