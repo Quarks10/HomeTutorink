@@ -4,29 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TutorRequestRecommend">
+    tools:context=".JobListSecondary">
+
 
     <LinearLayout
-    android:id="@+id/linearLayout2"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:background="#5A5AD0"
-    android:orientation="vertical"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
-
-    <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Tutor Requests"
-        android:textAlignment="center"
-        android:textColor="@android:color/background_light"
-        android:textSize="24sp" />
-</LinearLayout>
+        android:layout_height="0dp"
+        android:background="#5A5AD0"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Jobs List"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -40,27 +41,21 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
-            android:id="@+id/openbtn"
-            android:layout_width="62dp"
+            android:id="@+id/primarybtn"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Open" />
+            android:text="Primary School"/>
 
         <Button
-            android:id="@+id/viewAppbtn"
-            android:layout_width="129dp"
+            android:id="@+id/secondarybtn"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="View\nApplication"/>
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Select from\nRecommendation"
+            android:text="Secondary School"
             android:background="#32CD32"
             android:textStyle="bold" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -85,7 +80,7 @@
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/parentViewApplications"
+                    android:id="@+id/parentRequestCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp">
@@ -96,89 +91,112 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tutorNametxt"
+                            android:id="@+id/parentReqDesctxt"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ahmad Syahir"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/TutorAgetxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
                             android:text="TextView"
-                            android:textColor="@android:color/background_dark"
-                            tools:text="22 years old" />
-
-                        <TextView
-                            android:id="@+id/tutorExptxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="3 years as Developer"
-                            android:textColor="@android:color/background_dark" />
-
-                        <TextView
-                            android:id="@+id/tutorEdutxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Bachelor of Science"
-                            android:textColor="@android:color/background_dark" />
-
-                        <View
-                            android:id="@+id/divider"
-                            android:layout_width="match_parent"
-                            android:layout_height="5dp"
-                            android:layout_weight="2"
-                            android:background="?android:attr/listDivider" />
+                            android:textAlignment="center" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView18"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textView14"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Address:"
+                                android:text="Education Level:"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/background_dark" />
 
                             <TextView
-                                android:id="@+id/TutorAddtxt"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/eduLvltxt"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:background="#C0C0C0"
                                 android:text="TextView"
                                 android:textAlignment="center" />
-
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_margin="5dp"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView19"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textView15"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Teaches:"
+                                android:text="Grade:"
                                 android:textAlignment="center"
                                 android:textColor="@android:color/background_dark" />
 
                             <TextView
-                                android:id="@+id/TutorSubstxt"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/gradetxt"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:background="#C0C0C0"
                                 android:text="TextView"
                                 android:textAlignment="center" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Subject:"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/background_dark" />
+
+                            <TextView
+                                android:id="@+id/subjecttxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#C0C0C0"
+                                android:text="TextView"
+                                android:textAlignment="center" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="5dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView17"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Location:"
+                                android:textAlignment="center"
+                                android:textColor="@android:color/background_dark" />
+
+                            <TextView
+                                android:id="@+id/loctxt"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="#C0C0C0"
+                                android:text="TextView"
+                                android:textAlignment="center" />
+                        </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -186,7 +204,7 @@
                             android:orientation="horizontal">
 
                             <Button
-                                android:id="@+id/contactTutorbtn"
+                                android:id="@+id/messagebtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="15dp"
@@ -195,25 +213,25 @@
                                 android:layout_marginRight="20dp"
                                 android:layout_weight="1"
                                 android:background="#5A5AD0"
-                                android:text="Contact Tutor"
+                                android:text="Message"
                                 android:textColor="@android:color/background_light" />
 
                             <Button
-                                android:id="@+id/hirebtn"
+                                android:id="@+id/applybtn"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="15dp"
                                 android:layout_weight="1"
                                 android:background="#5A5AD0"
-                                android:text="Hire"
+                                android:text="Apply"
                                 android:textColor="@android:color/background_light" />
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </ScrollView>
-
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

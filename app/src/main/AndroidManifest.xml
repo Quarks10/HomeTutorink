@@ -9,7 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TutorRequestRecommend"></activity>
+        <activity android:name=".TutorAcceptJobsSecondary"></activity>
+        <activity android:name=".TutorAcceptJobsPrimary" />
+        <activity android:name=".JobListSecondary" />
+        <activity android:name=".JobListPrimary" />
+        <activity android:name=".JobHistorySecondary" />
+        <activity android:name=".JobHistoryPrimary" />
+        <activity android:name=".TutorRequestRecommend" />
         <activity android:name=".TutorRequestViewApp" />
         <activity android:name=".TutorRequestOpen" />
         <activity android:name=".ChildDetail" />
