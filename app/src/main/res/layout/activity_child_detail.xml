@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ParentDashboard">
+    tools:context=".ChildDetail">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -37,6 +37,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/childNametxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#34495E"
+                android:fontFamily="sans-serif-medium"
+                android:text="IZHAR HALQI"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,15 +66,16 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/childrenViewDB"
+                    android:id="@+id/childSubsbtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
-                    android:background="#34495E"
+                    android:background="#9ACD32"
                     android:fontFamily="sans-serif-medium"
-                    android:text="IZHAR HALQI"
+                    android:text="Subject: Mathematics\nTutor: Puan Anita\nLocation: At My Location"
                     android:textAlignment="center"
-                    android:textColor="@android:color/background_light" />
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 

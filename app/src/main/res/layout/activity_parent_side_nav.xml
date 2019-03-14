@@ -9,14 +9,9 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_message"
+        layout="@layout/app_bar_parent_side_nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <include
-        layout="@layout/activity_parent_dashboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -24,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_message"
-        app:menu="@menu/activity_message_drawer" />
+        app:headerLayout="@layout/nav_header_parent_side_nav"
+        app:menu="@menu/activity_parent_side_nav_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

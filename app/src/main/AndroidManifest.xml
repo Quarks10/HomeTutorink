@@ -9,18 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HireTutor"></activity>
-        <activity android:name=".ChildInfo" />
-        <activity android:name=".AddNewChild" />
-        <activity android:name=".SignUpParent" />
-        <activity android:name=".LoginPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".TutorRequestOpen"></activity>
+        <activity android:name=".ChildDetail" />
+        <activity
+            android:name=".parentSideNav"
+            android:label="@string/title_activity_parent_side_nav"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Message"
+            android:label="@string/title_activity_message"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".HireTutor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            sdfsdfsd
         </activity>
+        <activity android:name=".ChildInfo" />
+        <activity android:name=".AddNewChild" />
+        <activity android:name=".SignUpParent" />
+        <activity android:name=".LoginPage" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
