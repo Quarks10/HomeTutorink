@@ -8,32 +8,37 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:background="#5A5AD0"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Register Child for Tutoring"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:padding="30dp"
-                android:text="Child's Detail"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:background="#5A5AD0"/>
 
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
             android:id="@+id/textView"
@@ -50,16 +55,17 @@
             android:ems="10"
             android:hint="Name"
             android:inputType="textPersonName"
-            android:text="Name" />
+            android:text="Name"
+            tools:layout_editor_absoluteY="27dp" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:text="Education Level"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
+
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -73,18 +79,19 @@
                 android:text="Primary School" />
 
             <RadioButton
+                android:id="@+id/spmrb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Secondary School - SPM" />
+
+            <RadioButton
                 android:id="@+id/pt3rb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Secondary School - PT3" />
 
-            <RadioButton
-                android:id="@+id/spmrb"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Secondary School - SPM" />
         </RadioGroup>
 
         <TextView
@@ -196,17 +203,26 @@
                 android:text="Accounting" />
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <Button
             android:id="@+id/updateChildbtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="0dp"
             android:layout_marginRight="50dp"
             android:background="#5A5AD0"
-            android:text="Add" />
-
-
+            android:text="Add"
+            android:textColor="@android:color/background_light"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

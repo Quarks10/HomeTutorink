@@ -9,6 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".HomePage"/>.
+        <activity android:name=".HomePageTutor"/>.
+        <activity android:name=".JobHistoryPrimary"/>.
+        <activity android:name=".JobHistorySecondary"/>.
+        <activity android:name=".JobListPrimary"/>.
+        <activity android:name=".JobListSecondary"/>.
+        <activity android:name=".ParentDashboard"/>.
+        <activity android:name=".SignUpTutorQualifications"/>.
+        <activity android:name=".TutorAcceptJobsPrimary"/>.
+        <activity android:name=".TutorAcceptJobsSecondary"/>.
+        <activity android:name=".TutorDashboard"/>.
         <activity android:name=".TutorRequestRecommend"></activity>
         <activity android:name=".TutorRequestViewApp" />
         <activity android:name=".TutorRequestOpen" />
@@ -21,9 +32,7 @@
             android:name=".Message"
             android:label="@string/title_activity_message"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".HireTutor">
-
-        </activity>
+        <activity android:name=".HireTutor"/>
         <activity android:name=".ChildInfo" />
         <activity android:name=".AddNewChild" />
         <activity android:name=".SignUpParent" />
