@@ -9,13 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TutorAcceptJobsSecondary"></activity>
-        <activity android:name=".TutorAcceptJobsPrimary" />
-        <activity android:name=".JobListSecondary" />
-        <activity android:name=".JobListPrimary" />
-        <activity android:name=".JobHistorySecondary" />
-        <activity android:name=".JobHistoryPrimary" />
-        <activity android:name=".TutorRequestRecommend" />
+        <activity android:name=".TutorRequestRecommend"></activity>
         <activity android:name=".TutorRequestViewApp" />
         <activity android:name=".TutorRequestOpen" />
         <activity android:name=".ChildDetail" />
@@ -28,17 +22,20 @@
             android:label="@string/title_activity_message"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HireTutor">
+
+        </activity>
+        <activity android:name=".ChildInfo" />
+        <activity android:name=".AddNewChild" />
+        <activity android:name=".SignUpParent" />
+        <activity android:name=".LoginPage" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChildInfo" />
-        <activity android:name=".AddNewChild" />
-        <activity android:name=".SignUpParent" />
-        <activity android:name=".LoginPage" />
-        <activity android:name=".MainActivity" />
+
     </application>
 
 </manifest>

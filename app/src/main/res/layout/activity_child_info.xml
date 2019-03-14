@@ -202,9 +202,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="50dp"
-            android:text="Add"
-            android:background="#5A5AD0" />
+            android:background="#5A5AD0"
+            android:text="Add" />
 
 
     </LinearLayout>

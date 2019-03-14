@@ -52,7 +52,22 @@ public class SignUpParent extends AppCompatActivity {
                 String lname_text = lname.getText().toString();
                 String address_text = address.getText().toString();
 
-                createAccount(email_text,pass_text,fname_text,lname_text,address_text);
+             //   createAccount(email_text,pass_text,fname_text,lname_text,address_text);
+
+                String curr_mode = getIntent().getStringExtra("mode_sg");
+
+
+                if (curr_mode.equals("Parent"))
+                {
+                    Intent toChildInfo = new Intent(SignUpParent.this,ChildInfo.class);
+                    startActivity(toChildInfo);
+                }else if (curr_mode.equals("Tutor"))
+                {
+                    Intent toQualifications = new Intent(SignUpParent.this,SignUpTutorQualifications.class);
+                    startActivity(toQualifications);
+                }
+
+
 
 
 
