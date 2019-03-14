@@ -41,11 +41,11 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
-            android:id="@+id/primarybtn"
+            android:id="@+id/primarybtnlist"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Primary School"/>
+            android:text="Primary School" />
 
         <Button
             android:id="@+id/secondarybtn"

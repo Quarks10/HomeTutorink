@@ -67,11 +67,6 @@ public class SignUpParent extends AppCompatActivity {
                     startActivity(toQualifications);
                 }
 
-
-
-
-
-
             }
         });
 

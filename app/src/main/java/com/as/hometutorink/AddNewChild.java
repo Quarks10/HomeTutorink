@@ -10,14 +10,15 @@ import android.widget.ScrollView;
 
 public class AddNewChild extends AppCompatActivity {
 
-    Button addChild;
+    Button addChild, doneaddChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_child);
 
-        addChild = findViewById(R.id.doneChildbtn);
+        doneaddChild = findViewById(R.id.doneChildbtn);
+        addChild = findViewById(R.id.addNewChildbtn);
 
         // Find the ScrollView
      //   final ScrollView scrollView = findViewById(R.id.scrollView4);
@@ -31,7 +32,7 @@ public class AddNewChild extends AppCompatActivity {
        // button.setText("Some text");
         //linearLayout.addView(button);
 
-        addChild.setOnClickListener(new View.OnClickListener() {
+        doneaddChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Add the LinearLayout element to the ScrollView
@@ -42,6 +43,14 @@ public class AddNewChild extends AppCompatActivity {
             }
         });
 
+
+        addChild.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toAddMoreChild = new Intent(AddNewChild.this,ChildInfo.class);
+                startActivity(toAddMoreChild);
+            }
+        });
 
 
     }

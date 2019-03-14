@@ -40,18 +40,18 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <Button
-            android:id="@+id/openbtn"
+            android:id="@+id/openbtnrq"
             android:layout_width="62dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="Open" />
 
         <Button
-            android:id="@+id/viewAppbtn"
+            android:id="@+id/viewAppbtnrq"
             android:layout_width="129dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="View\nApplication"/>
+            android:text="View\nApplication" />
 
         <Button
             android:id="@+id/button5"
