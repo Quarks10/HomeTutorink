@@ -15,8 +15,6 @@ public class JobHistoryPrimary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_history_primary);
 
-        job_secondary = findViewById(R.id.secondarybtnhistory);
-
         job_secondary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

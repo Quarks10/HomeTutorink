@@ -15,8 +15,6 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_accept_jobs_primary);
 
-        job_secondary = findViewById(R.id.secondarybtnaccept);
-
         job_secondary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

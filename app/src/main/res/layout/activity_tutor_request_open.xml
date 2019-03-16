@@ -78,11 +78,11 @@
                             android:textColor="@android:color/background_dark" />
 
                         <TextView
-                            android:id="@+id/jPTime"
+                            android:id="@+id/jPTime2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="When: Monday, 8.00 pm"
+                            android:text="When: 12/09/19, 8.00 pm"
                             android:textAlignment="textStart"
                             android:textColor="@android:color/background_dark" />
 
