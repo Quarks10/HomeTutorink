@@ -22,57 +22,21 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Tutor Requests"
+            android:text="Job Posted"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
-        android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <Button
-            android:id="@+id/openbtn"
-            android:layout_width="62dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#32CD32"
-            android:text="Open"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/viewAppbtn"
-            android:layout_width="129dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="View\nApplication" />
-
-        <Button
-            android:id="@+id/viewAppRecommendation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Select from\nRecommendation" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -96,112 +60,41 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/parentReqDesctxt"
+                            android:id="@+id/jPNamelbl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="TextView"
-                            android:textAlignment="center" />
+                            android:text="Syahir"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/jPSubjectlbl"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Subject: Mathematics"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/background_dark" />
 
-                            <TextView
-                                android:id="@+id/textView14"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Education Level:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
-
-                            <TextView
-                                android:id="@+id/eduLvltxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="#C0C0C0"
-                                android:text="TextView"
-                                android:textAlignment="center" />
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/jPTime"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="When: Monday, 8.00 pm"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/background_dark" />
 
-                            <TextView
-                                android:id="@+id/textView15"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Grade:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
-
-                            <TextView
-                                android:id="@+id/gradetxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="#C0C0C0"
-                                android:text="TextView"
-                                android:textAlignment="center" />
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/jPLoc"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:orientation="horizontal">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Location: At my Location"
+                            android:textAlignment="textStart"
+                            android:textColor="@android:color/background_dark" />
 
-                            <TextView
-                                android:id="@+id/textView16"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Subject:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
-
-                            <TextView
-                                android:id="@+id/subjecttxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="#C0C0C0"
-                                android:text="TextView"
-                                android:textAlignment="center" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="5dp"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textView17"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Location:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
-
-                            <TextView
-                                android:id="@+id/loctxt"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:background="#C0C0C0"
-                                android:text="TextView"
-                                android:textAlignment="center" />
-                        </LinearLayout>
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>

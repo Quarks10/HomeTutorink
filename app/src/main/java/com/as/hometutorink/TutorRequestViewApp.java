@@ -15,10 +15,6 @@ public class TutorRequestViewApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_request_view_app);
 
-        view_open = findViewById(R.id.openbtn);
-        view_recommended = findViewById(R.id.view_recommend_btn);
-
-
         view_open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

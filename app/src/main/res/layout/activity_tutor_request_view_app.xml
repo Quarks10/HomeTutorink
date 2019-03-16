@@ -17,202 +17,294 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView12"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Tutor Requests"
+            android:text="Job Posted"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="20dp"
+        android:layout_height="648dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <Button
-            android:id="@+id/openbtn"
-            android:layout_width="62dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Open" />
-
-        <Button
-            android:id="@+id/viewAppbtn"
-            android:layout_width="129dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="View\nApplication"
-            android:background="#32CD32"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/view_recommend_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Select from\nRecommendation" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <ScrollView
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="15dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
 
-                <android.support.v7.widget.CardView
-                    android:id="@+id/parentViewApplications"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp">
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/textView11"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:text="Applications"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/tutorNametxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Ahmad Syahir"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/TutorAgetxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textColor="@android:color/background_dark"
-                            tools:text="22 years old" />
-
-                        <TextView
-                            android:id="@+id/tutorExptxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="3 years as Developer"
-                            android:textColor="@android:color/background_dark" />
-
-                        <TextView
-                            android:id="@+id/tutorEdutxt"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Bachelor of Science"
-                            android:textColor="@android:color/background_dark" />
-
-                        <View
-                            android:id="@+id/divider"
-                            android:layout_width="match_parent"
-                            android:layout_height="5dp"
-                            android:layout_weight="2"
-                            android:background="?android:attr/listDivider" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textView18"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Address:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
-
-                            <TextView
-                                android:id="@+id/TutorAddtxt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="TextView"
-                                android:textAlignment="center" />
-
-                        </LinearLayout>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/parentViewApplications"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/textView19"
-                                android:layout_width="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Teaches:"
-                                android:textAlignment="center"
-                                android:textColor="@android:color/background_dark" />
+                                android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/TutorSubstxt"
-                                android:layout_width="wrap_content"
+                                <TextView
+                                    android:id="@+id/tutorNametxt"
+                                    android:layout_width="266dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Atiq Shariff"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <RatingBar
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:stepSize="0.1" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="TextView"
-                                android:textAlignment="center" />
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="224dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="3dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tutorExptxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="3 years as Data Scientist"
+                                        android:textColor="@android:color/background_dark" />
+
+                                    <TextView
+                                        android:id="@+id/tutorEdutxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bachelor of Science"
+                                        android:textColor="@android:color/background_dark" />
+
+                                    <TextView
+                                        android:id="@+id/tutorAddresstxt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Address : Pulau Pinang"
+                                        android:textColor="@android:color/background_dark" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <Button
+                                        android:id="@+id/contactTutorbtn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:background="#5A5AD0"
+                                        android:text="Contact Tutor"
+                                        android:textColor="@android:color/background_light" />
+
+                                    <Button
+                                        android:id="@+id/hirebtn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:background="#5A5AD0"
+                                        android:text="Hire"
+                                        android:textColor="@android:color/background_light" />
+                                </LinearLayout>
+                            </LinearLayout>
+
                         </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Recommendations"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/parentRecommendations"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="10dp"
-                            android:orientation="horizontal">
+                            android:orientation="vertical">
 
-                            <Button
-                                android:id="@+id/contactTutorbtn"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="15dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginRight="20dp"
-                                android:layout_weight="1"
-                                android:background="#5A5AD0"
-                                android:text="Contact Tutor"
-                                android:textColor="@android:color/background_light" />
+                                android:orientation="horizontal">
 
-                            <Button
-                                android:id="@+id/button3"
+                                <TextView
+                                    android:id="@+id/tutorName2txt"
+                                    android:layout_width="266dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Atiq Shariff"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <RatingBar
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:stepSize="0.1" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="15dp"
-                                android:layout_weight="1"
-                                android:background="#5A5AD0"
-                                android:text="Hire"
-                                android:textColor="@android:color/background_light" />
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="224dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="3dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tutorExp2txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="3 years as Data Scientist"
+                                        android:textColor="@android:color/background_dark" />
+
+                                    <TextView
+                                        android:id="@+id/tutorEdu2txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Bachelor of Science"
+                                        android:textColor="@android:color/background_dark" />
+
+                                    <TextView
+                                        android:id="@+id/tutorAddress2txt"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Address : Pulau Pinang"
+                                        android:textColor="@android:color/background_dark" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.7"
+                                    android:orientation="vertical">
+
+                                    <Button
+                                        android:id="@+id/contactTutor2btn"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:background="#5A5AD0"
+                                        android:text="Contact Tutor"
+                                        android:textColor="@android:color/background_light" />
+
+                                    <Button
+                                        android:id="@+id/hirebtn2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="5dp"
+                                        android:layout_weight="1"
+                                        android:background="#5A5AD0"
+                                        android:text="Hire"
+                                        android:textColor="@android:color/background_light" />
+                                </LinearLayout>
+                            </LinearLayout>
+
                         </LinearLayout>
-                    </LinearLayout>
 
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-        </ScrollView>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
 
     </LinearLayout>
 
