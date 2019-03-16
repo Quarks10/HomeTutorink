@@ -39,25 +39,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <TextView
-            android:id="@+id/textView9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:paddingTop="20dp"
-            android:text="Requirement Details"
-            android:textAlignment="center"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/elabInput"
-            android:layout_width="match_parent"
-            android:layout_height="86dp"
-            android:ems="10"
-            android:hint="Elaborate your requirements"
-            android:inputType="textMultiLine"
-            android:singleLine="false" />
-
-        <TextView
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
