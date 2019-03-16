@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CalendarView cv;
+    private TextView tv;
     private Button parent_button;
     private Button tutor_button;
     private static final String TAG = "MyActivity";
@@ -20,7 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         parent_button = findViewById(R.id.ParentLoginbtn);
         tutor_button = findViewById(R.id.TutorLoginbtn);
+     //   cv = findViewById(R.id.calendarView);
+      //  tv = findViewById(R.id.text_calendar);
 
+
+       // int a = (int) cv.getDate();
+
+       // tv.setText(Integer.toString(a));
         parent_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

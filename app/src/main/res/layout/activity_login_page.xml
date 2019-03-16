@@ -89,22 +89,24 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/inputEmail"
+            android:id="@+id/inputEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="center"
+            android:hint="Email"
             android:inputType="textEmailAddress"
-            android:text="Enter your email"
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="435dp" />
 
         <EditText
-            android:id="@+id/pwInput"
+            android:id="@+id/pwInputLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword" />
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textAlignment="center" />
 
         <LinearLayout
             android:layout_width="match_parent"

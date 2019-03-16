@@ -51,21 +51,11 @@ public class SignUpParent extends AppCompatActivity {
                 String fname_text = fname.getText().toString();
                 String lname_text = lname.getText().toString();
                 String address_text = address.getText().toString();
-
-             //   createAccount(email_text,pass_text,fname_text,lname_text,address_text);
+              //  String parent_id = mAuth.getUid();
 
                 String curr_mode = getIntent().getStringExtra("mode_sg");
+                createAccount(email_text,pass_text,fname_text,lname_text,address_text,curr_mode);
 
-
-                if (curr_mode.equals("Parent"))
-                {
-                    Intent toChildInfo = new Intent(SignUpParent.this,ChildInfo.class);
-                    startActivity(toChildInfo);
-                }else if (curr_mode.equals("Tutor"))
-                {
-                    Intent toQualifications = new Intent(SignUpParent.this,SignUpTutorQualifications.class);
-                    startActivity(toQualifications);
-                }
 
             }
         });
@@ -80,15 +70,29 @@ public class SignUpParent extends AppCompatActivity {
         if(currentUser != null)
         {
             Log.d(TAG,currentUser.getEmail());
+        }else
+        {
+            Log.d(TAG,"no user");
         }
 
     }
 
-    private void updateUI() {
+    private void updateUI(String curr_mode, FirebaseUser user) {
 
-       // FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Intent toAddChild = new Intent(SignUpParent.this,AddNewChild.class);
-        startActivity(toAddChild);
+        if (curr_mode.equals("Parent"))
+        {
+            Intent toChildInfo = new Intent(SignUpParent.this,ChildInfo.class);
+            toChildInfo.putExtra("Parent_uid", user.getUid());
+            startActivity(toChildInfo);
+        }else if (curr_mode.equals("Tutor"))
+        {
+            Intent toQualifications = new Intent(SignUpParent.this,SignUpTutorQualifications.class);
+            startActivity(toQualifications);
+        }
+
+
+       // Intent toAddChild = new Intent(SignUpParent.this,AddNewChild.class);
+      //  startActivity(toAddChild);
         // finish();
 
     }
@@ -99,7 +103,7 @@ public class SignUpParent extends AppCompatActivity {
 
     }
 
-    private void createAccount(String email, String password, final String fname, final String lname, final String address) {
+    private void createAccount(String email, String password, final String fname, final String lname, final String address, final String curr_mode) {
         Log.d(TAG, "createAccount:" + email);
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -111,7 +115,7 @@ public class SignUpParent extends AppCompatActivity {
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             addNewParent(fname,lname,address, user);
-                            updateUI();
+                            updateUI(curr_mode,user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

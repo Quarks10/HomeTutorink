@@ -5,10 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
     Button dashboard, hire_tutor, tutor_request, messages, children, logout;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,11 @@ public class HomePage extends AppCompatActivity {
         messages = findViewById(R.id.message_sidebar);
         children = findViewById(R.id.children_sidebar);
         logout = findViewById(R.id.logout_sidebar);
+        mAuth = FirebaseAuth.getInstance();
+
+
+        Toast.makeText(HomePage.this, "Current user is " + mAuth.getUid(),
+                Toast.LENGTH_SHORT).show();
 
 
         dashboard.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +67,7 @@ public class HomePage extends AppCompatActivity {
         children.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toChildren = new Intent(HomePage.this,AddNewChild.class);
+                Intent toChildren = new Intent(HomePage.this,ListOfChild.class);
                 startActivity(toChildren);
             }
         });
