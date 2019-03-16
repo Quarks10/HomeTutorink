@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ListOfChild">
 
-    <include layout = "@layout/layout_button_list_child"/>
+    <!--<include layout = "@layout/layout_button_list_child"/>-->
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -66,6 +66,7 @@
                     android:textAlignment="viewStart"
                     android:textAllCaps="false"
                     android:textSize="18sp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/scrollView4" />

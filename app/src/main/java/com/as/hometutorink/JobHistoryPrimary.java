@@ -8,20 +8,20 @@ import android.widget.Button;
 
 public class JobHistoryPrimary extends AppCompatActivity {
 
-    Button job_secondary;
+   // Button job_secondary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_history_primary);
 
-        job_secondary.setOnClickListener(new View.OnClickListener() {
+      /*  job_secondary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toSecondary = new Intent(JobHistoryPrimary.this,JobHistorySecondary.class);
                 startActivity(toSecondary);
             }
         });
-
+*/
     }
 }

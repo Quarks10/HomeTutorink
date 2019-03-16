@@ -8,21 +8,21 @@ import android.widget.Button;
 
 public class TutorAcceptJobsPrimary extends AppCompatActivity {
 
-    Button job_secondary;
+    //Button job_secondary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_accept_jobs_primary);
 
-        job_secondary.setOnClickListener(new View.OnClickListener() {
+  /*      job_secondary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toSecondary = new Intent(TutorAcceptJobsPrimary.this,TutorAcceptJobsSecondary.class);
                 startActivity(toSecondary);
             }
         });
-
+*/
     }
 
 

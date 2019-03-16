@@ -15,13 +15,11 @@
         <activity android:name=".HomePage" />
         <activity android:name=".HomePageTutor" />
         <activity android:name=".JobHistoryPrimary" />
-        <activity android:name=".JobHistorySecondary" />
         <activity android:name=".JobListPrimary" />
         <activity android:name=".JobListSecondary" />
         <activity android:name=".ParentDashboard" />
         <activity android:name=".SignUpTutorQualifications" />
         <activity android:name=".TutorAcceptJobsPrimary" />
-        <activity android:name=".TutorAcceptJobsSecondary" />
         <activity android:name=".TutorDashboard" />
         <activity android:name=".TutorRequestRecommend" />
         <activity android:name=".TutorRequestViewApp" />
@@ -37,7 +35,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HireTutor" />
         <activity android:name=".ChildInfo" />
-        <activity android:name=".AddNewChild" />
         <activity android:name=".SignUpParent" />
         <activity android:name=".LoginPage" />
         <activity android:name=".MainActivity">
