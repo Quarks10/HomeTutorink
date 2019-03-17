@@ -26,5 +26,10 @@
         <item>5</item>
     </string-array>
 
+    <string-array name="locationlist">
+        <item>In my location</item>
+        <item>At tutor place</item>
+    </string-array>
+
 
 </resources>

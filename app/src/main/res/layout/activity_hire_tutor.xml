@@ -7,6 +7,8 @@
     tools:context=".HireTutor">
 
     <LinearLayout
+        android:focusable="false"
+        android:focusableInTouchMode="true"
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -65,7 +67,7 @@
                         android:textColor="@android:color/black"/>
 
                     <Spinner
-                        android:id="@+id/spinner4"
+                        android:id="@+id/spinnerChildList"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
@@ -82,6 +84,7 @@
                     android:textColor="@android:color/black"/>
 
                 <RadioGroup
+                    android:id="@+id/rgSubjectHire"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -167,14 +170,14 @@
                         android:id="@+id/textView19"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="Location:"
-                        android:textSize = "16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <Spinner
-                        android:id="@+id/spinner5"
+                        android:id="@+id/spinnerLocationList"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
@@ -191,15 +194,43 @@
                         android:id="@+id/textView20"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Date Start:"
+                        android:layout_weight="3"
                         android:gravity="center_vertical"
-                        android:textSize = "16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
+                        android:text="Date:"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dateStarttxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:inputType="none"
+                        android:clickable="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:text="Time:"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/TimeStarttxt"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -218,6 +249,8 @@
 
             </LinearLayout>
         </ScrollView>
+
+
 
     </LinearLayout>
 

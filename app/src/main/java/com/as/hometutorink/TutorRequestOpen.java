@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class TutorRequestOpen extends AppCompatActivity {
 
-    Button view_application, view_recommended;
+  //  Button view_application, view_recommended;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class TutorRequestOpen extends AppCompatActivity {
         //view_recommended = findViewById(R.id.viewAppRecommendation);
 
 
-        view_application.setOnClickListener(new View.OnClickListener() {
+/*        view_application.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent toviewapplication = new Intent(TutorRequestOpen.this,TutorRequestViewApp.class);
@@ -34,5 +34,8 @@ public class TutorRequestOpen extends AppCompatActivity {
                 startActivity(toviewrecommmended);
             }
         });
+
+        */
     }
+
 }
