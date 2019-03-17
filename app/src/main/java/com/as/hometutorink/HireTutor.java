@@ -78,7 +78,7 @@ public class HireTutor extends AppCompatActivity {
                             myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
+                   // Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -101,7 +101,7 @@ public class HireTutor extends AppCompatActivity {
                     mTimePicker.setTitle("Select Time");
                     mTimePicker.show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -122,11 +122,8 @@ public class HireTutor extends AppCompatActivity {
 
         String userID = mAuth.getUid();
         final ArrayList<Children> arrayListChildren = new ArrayList<Children>();
-        Log.d(TAG, "userid: " + userID);
         final DatabaseReference refChildren = FirebaseDatabase.getInstance()
                 .getReference("children").child(userID);
-
-        Log.d(TAG, "db: " + refChildren.toString());
 
         refChildren.addValueEventListener(new ValueEventListener() {
             @Override
@@ -162,23 +159,12 @@ public class HireTutor extends AppCompatActivity {
     public void runspinner(ArrayList<Children> arrayListChildren)
     {
         int sizeListChild = arrayListChildren.size();
-        Log.d(TAG, "sire array: " + sizeListChild);
         String[] arraySpinner = new String[sizeListChild];
 
         for (int j = 0; j < arrayListChildren.size(); j++) {
 
-            // Assign each value to String array
             arraySpinner[j] = arrayListChildren.get(j).getChildname();
         }
-
-        for (int j = 0; j < arrayListChildren.size(); j++) {
-
-            Log.d(TAG, arraySpinner[j]);
-            // arraySpinner[j] = (arrayListChildren.get(j)).getChildname();
-        }
-
-
-
 
         spinner_child_hire = findViewById(R.id.spinnerChildList);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -222,18 +208,17 @@ public class HireTutor extends AppCompatActivity {
 
                 start_db(index_selected, childselected, subject, location, date, time);
 
-                Intent toJobList = new Intent(HireTutor.this,JobListPrimary.class);
+                Intent toJobList = new Intent(HireTutor.this,TutorRequestOpen.class);
                 startActivity(toJobList);
             }
         });
     }
 
-    public void InsertPostingDB(String childID, String childselected, String subject, String location, String date, String time)
+    public void InsertPostingDB(String childID, String childEduLevel, String childselected, String subject, String location, String date, String time)
     {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-       // String childID = getChildNameDB(index_selected);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("jobposting");
@@ -243,13 +228,14 @@ public class HireTutor extends AppCompatActivity {
 
         Map<String, String> job_details = new HashMap<String, String>();
         job_details.put("child_id",  childID);
+        job_details.put("edu_level",  childEduLevel);
         job_details.put("child_name", childselected);
         job_details.put("post_id", postingID);
         job_details.put("subject", subject);
         job_details.put("location", location);
         job_details.put("date", date);
         job_details.put("time", time);
-        job_details.put("active", "true");
+        job_details.put("status", "true");
 
 
         myRef.child(currentUser.getUid()).child(postingID).setValue(job_details);
@@ -262,8 +248,6 @@ public class HireTutor extends AppCompatActivity {
         final ArrayList<Children> arrayListChildren = new ArrayList<Children>();
         final DatabaseReference refChildren = FirebaseDatabase.getInstance()
                 .getReference("children").child(userID);
-
-        Log.d(TAG, "IndexNum: " + index_selected);
 
         refChildren.addValueEventListener(new ValueEventListener() {
             @Override
@@ -283,9 +267,8 @@ public class HireTutor extends AppCompatActivity {
 
                 }
 
-               // runspinner(arrayListChildren);
 
-                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), childselected, subject, location, date, time);
+                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), arrayListChildren.get(index_selected).getEdulevel() ,childselected, subject, location, date, time);
 
             }
 

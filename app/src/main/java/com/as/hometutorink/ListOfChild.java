@@ -74,8 +74,6 @@ public class ListOfChild extends AppCompatActivity {
 
         String userID = mAuth.getUid();
 
-        showMessage(userID);
-
         DatabaseReference refChildren = FirebaseDatabase.getInstance()
                 .getReference("children").child(userID);
 
@@ -98,12 +96,7 @@ public class ListOfChild extends AppCompatActivity {
                     String childrenlevel = uniqueKeySnapshot.child("level").getValue().toString();
                     String childrenid = uniqueKeySnapshot.child("id").getValue().toString();
 
-                   // showMessage(childrenname);
-                   // showMessage(childrenedulevel);
-
                     Children children = new Children(childrenname,childrenedulevel,childrenlevel,childrenid);
-
-                    showMessage(children.getChildname());
                     generateChildList(children);
 
                 }
