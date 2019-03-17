@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/dashboardCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/dashCardNameTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Syahir"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dashCardTutorTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tutor: Pn. Aliza"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dashCardSubjectTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subject: Mathematics"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/dashCardTimeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="When: 12/09/19, 8.00pm"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

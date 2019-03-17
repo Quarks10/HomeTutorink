@@ -11,10 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#5A5AD0"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="59dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homs" />
 
         <TextView
             android:id="@+id/textView12"
@@ -22,16 +30,18 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Accept Jobs"
+            android:text="Accept Job"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +54,7 @@
             android:layout_margin="15dp">
 
             <LinearLayout
+                android:id="@+id/acceptjobsll"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

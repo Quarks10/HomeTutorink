@@ -25,7 +25,7 @@
         <item name="contentPaddingTop">24dp</item>
         <item name="contentPaddingLeft">16dp</item>
         <item name="contentPaddingRight">16dp</item>
-        <item name="cardBackgroundColor">#673AB7</item>
+        <item name="cardBackgroundColor">#EEE8AA</item>
     </style>
 
 </resources>

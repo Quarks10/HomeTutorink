@@ -10,12 +10,20 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:background="#5A5AD0"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="59dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homs" />
 
         <TextView
             android:id="@+id/textView12"
@@ -23,14 +31,15 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Register Child for Tutoring"
+            android:text="Register Child"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="20dp"
         android:orientation="vertical"

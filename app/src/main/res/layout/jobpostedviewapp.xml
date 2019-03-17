@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/parentViewApplications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tutorNametxt"
+                    android:layout_width="266dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Atiq Shariff"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:stepSize="0.1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="224dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tutorExptxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3 years as Data Scientist"
+                        android:textColor="@android:color/background_dark" />
+
+                    <TextView
+                        android:id="@+id/tutorEdutxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Bachelor of Science"
+                        android:textColor="@android:color/background_dark" />
+
+                    <TextView
+                        android:id="@+id/tutorAddresstxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Address : Pulau Pinang"
+                        android:textColor="@android:color/background_dark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/contactTutorbtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="#5A5AD0"
+                        android:text="Contact Tutor"
+                        android:textColor="@android:color/background_light" />
+
+                    <Button
+                        android:id="@+id/hirebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="#5A5AD0"
+                        android:text="Hire"
+                        android:textColor="@android:color/background_light" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>

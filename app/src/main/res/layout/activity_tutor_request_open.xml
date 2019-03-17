@@ -11,10 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#5A5AD0"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="59dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homs" />
 
         <TextView
             android:id="@+id/textView12"
@@ -26,6 +34,7 @@
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -44,6 +53,7 @@
             android:layout_margin="15dp">
 
             <LinearLayout
+                android:id="@+id/jobPostedll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
