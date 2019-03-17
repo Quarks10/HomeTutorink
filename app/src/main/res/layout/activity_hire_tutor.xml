@@ -11,10 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#5A5AD0"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="59dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homs" />
 
         <TextView
             android:id="@+id/textView12"
@@ -22,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_margin="15dp"
             android:fontFamily="sans-serif-black"
-            android:text="Hire a Tutor"
+            android:text="Hire A Tutor"
             android:textAlignment="center"
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
@@ -30,8 +38,10 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,9 +70,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Hire For:"
+                        android:textColor="@android:color/black"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner4"
@@ -77,9 +87,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
                     android:text="Subjec:t"
-                    android:textSize = "16sp"
-                    android:textStyle="bold"
-                    android:textColor="@android:color/black"/>
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RadioGroup
                     android:layout_width="match_parent"
@@ -169,9 +179,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="Location:"
-                        android:textSize = "16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <Spinner
                         android:id="@+id/spinner5"
@@ -192,11 +202,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="Date Start:"
                         android:gravity="center_vertical"
-                        android:textSize = "16sp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
+                        android:text="Date Start:"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/dateStarttxt"

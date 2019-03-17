@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".tutorDashboardCal"></activity>
+        <activity android:name=".TutorIncomeEarned" />
+        <activity android:name=".ParentPayment" />
+        <activity android:name=".tutorDashboardCal" />
         <activity android:name=".ParentDashboardCal" />
         <activity android:name=".ListOfChild" />
         <activity android:name=".HomePage" />

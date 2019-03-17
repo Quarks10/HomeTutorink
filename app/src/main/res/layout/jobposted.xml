@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/parentRequestCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/jPNamelbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Syahir"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/jPSubjectlbl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Subject: Mathematics"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/jPTime2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="When: 12/09/19, 8.00 pm"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/jPLoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Location: At my Location"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/background_dark" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
