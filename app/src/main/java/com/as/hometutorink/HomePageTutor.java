@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class HomePageTutor extends AppCompatActivity {
 
     Button dashboard, job_list, job_history, accept_jobs, messages, logout;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +24,7 @@ public class HomePageTutor extends AppCompatActivity {
         accept_jobs = findViewById(R.id.acceptjobs_sidebar);
         messages = findViewById(R.id.message_sidebar_tutor);
         logout = findViewById(R.id.logout_sidebar);
+        mAuth = FirebaseAuth.getInstance();
 
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +69,7 @@ public class HomePageTutor extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 Intent toLogout = new Intent(HomePageTutor.this,MainActivity.class);
                 startActivity(toLogout);
             }

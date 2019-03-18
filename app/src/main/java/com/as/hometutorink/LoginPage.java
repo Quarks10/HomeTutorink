@@ -1,6 +1,7 @@
 package com.as.hometutorink;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.oob.SignUp;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -47,11 +47,11 @@ public class LoginPage extends AppCompatActivity {
                 Log.d(TAG, "sign Up:" + curr_mode);
 
                 if (curr_mode.equals("Parent")) {
-                    Intent toSignUp = new Intent(LoginPage.this, SignUpParent.class);
+                    Intent toSignUp = new Intent(LoginPage.this, SignUp.class);
                     toSignUp.putExtra("mode_sg", curr_mode);
                     startActivity(toSignUp);
                 } else if (curr_mode.equals("Tutor")) {
-                    Intent toSignUp = new Intent(LoginPage.this, SignUpParent.class);
+                    Intent toSignUp = new Intent(LoginPage.this, SignUp.class);
                     toSignUp.putExtra("mode_sg", curr_mode);
                     startActivity(toSignUp);
                 }
@@ -71,10 +71,29 @@ public class LoginPage extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null)
+        {
+            Log.d(TAG,currentUser.getEmail());
+        }else
+        {
+            Log.d(TAG,"no user");
+        }
+
+    }
+
     public void init() {
         currentMode = findViewById(R.id.mode_text);
         String curr_mode = getIntent().getStringExtra("mode");
         currentMode.setText(curr_mode);
+
+
+
+
     }
 
     public void loginAccount() {

@@ -224,7 +224,7 @@
                     android:orientation="horizontal">
 
                     <CheckBox
-                        android:id="@+id/addm3cb"
+                        android:id="@+id/addm3cbtutor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -311,7 +311,7 @@
                         android:text="History" />
 
                     <CheckBox
-                        android:id="@+id/acccbtutpr"
+                        android:id="@+id/acccbtutor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

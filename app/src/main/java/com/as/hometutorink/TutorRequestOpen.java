@@ -76,15 +76,14 @@ public class TutorRequestOpen extends AppCompatActivity {
                     String jobchildid = uniqueKeySnapshot.child("child_id").getValue().toString();
                     String jobchildname = uniqueKeySnapshot.child("child_name").getValue().toString();
                     String jobedulevel = uniqueKeySnapshot.child("edu_level").getValue().toString();
+                    String joblevel = uniqueKeySnapshot.child("level").getValue().toString();
                     String jobsubject = uniqueKeySnapshot.child("subject").getValue().toString();
                     String joblocation = uniqueKeySnapshot.child("location").getValue().toString();
                     String jobdate = uniqueKeySnapshot.child("date").getValue().toString();
                     String jobtime = uniqueKeySnapshot.child("time").getValue().toString();
                     String jobstatus = uniqueKeySnapshot.child("status").getValue().toString();
 
-                    JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,jobsubject,joblocation,jobdate,jobtime,jobstatus);
-
-                    showMessage(jobpostid);
+                    JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobtime,jobstatus);
 
                     if (jobPosting.getStatus().equals("true"))
                    {
@@ -101,7 +100,7 @@ public class TutorRequestOpen extends AppCompatActivity {
         });
     }
 
-    public void generateParentJobList(JobPosting jobPosting) {
+    public void generateParentJobList(final JobPosting jobPosting) {
 
         LinearLayout mainLayout = findViewById(R.id.jobPostedll);
 
@@ -115,6 +114,7 @@ public class TutorRequestOpen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent toTutorViewApp = new Intent(TutorRequestOpen.this, TutorRequestViewApp.class);
+                toTutorViewApp.putExtra("post_id",jobPosting.getPostID());
                 startActivity(toTutorViewApp);
             }
         });

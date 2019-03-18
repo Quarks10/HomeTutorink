@@ -101,13 +101,13 @@
                         android:textColor="@android:color/background_light" />
 
                     <Button
-                        android:id="@+id/acceptbtn"
+                        android:id="@+id/applybtn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:background="#5A5AD0"
-                        android:text="Accept"
+                        android:text="Apply"
                         android:textColor="@android:color/background_light" />
                 </LinearLayout>
             </LinearLayout>

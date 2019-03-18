@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SignUpParent extends AppCompatActivity {
+public class SignUp extends AppCompatActivity {
 
     private EditText email,password, fname, lname, address;
     private Button btnSignUp;
@@ -81,17 +81,17 @@ public class SignUpParent extends AppCompatActivity {
 
         if (curr_mode.equals("Parent"))
         {
-            Intent toChildInfo = new Intent(SignUpParent.this,ChildInfo.class);
+            Intent toChildInfo = new Intent(SignUp.this,ChildInfo.class);
             toChildInfo.putExtra("Parent_uid", user.getUid());
             startActivity(toChildInfo);
         }else if (curr_mode.equals("Tutor"))
         {
-            Intent toQualifications = new Intent(SignUpParent.this,SignUpTutorQualifications.class);
+            Intent toQualifications = new Intent(SignUp.this,SignUpTutorQualifications.class);
             startActivity(toQualifications);
         }
 
 
-       // Intent toAddChild = new Intent(SignUpParent.this,AddNewChild.class);
+       // Intent toAddChild = new Intent(SignUp.this,AddNewChild.class);
       //  startActivity(toAddChild);
         // finish();
 
@@ -114,12 +114,18 @@ public class SignUpParent extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            addNewParent(fname,lname,address, user);
+
+                            if (curr_mode.equals("Parent")){
+                                addNewParent(fname,lname,address, user);
+                            }else {
+                                addNewTutor(fname,lname,address, user);
+                            }
+
                             updateUI(curr_mode,user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpParent.this, "Authentication failed.",
+                            Toast.makeText(SignUp.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                            // updateUI(null);
                         }
@@ -129,17 +135,34 @@ public class SignUpParent extends AppCompatActivity {
 
     private void addNewParent(String fname, String lname, String address, FirebaseUser user) {
 
+        Map<String, String> parent_details = new HashMap<String, String>();
+       //parent_details.put("parent_id",  user.getUid());
+        parent_details.put("first_name",  fname);
+        parent_details.put("last_name", lname);
+        parent_details.put("address", address);
 
-                Map<String, String> parent_details = new HashMap<String, String>();
-                parent_details.put("first_name",  fname);
-                parent_details.put("last_name", lname);
-                parent_details.put("address", address);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("parent");
+
+        myRef.child(user.getUid()).setValue(parent_details);
 
 
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = database.getReference("parent");
+    }
 
-                myRef.child(user.getUid()).setValue(parent_details);
+    private void addNewTutor(String fname, String lname, String address, FirebaseUser user) {
+
+        Map<String, String> tutor_details = new HashMap<String, String>();
+       // tutor_details.put("tutor_id",  user.getUid());
+        tutor_details.put("first_name",  fname);
+        tutor_details.put("last_name", lname);
+        tutor_details.put("address", address);
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("tutor");
+
+        myRef.child(user.getUid()).setValue(tutor_details);
 
 
     }

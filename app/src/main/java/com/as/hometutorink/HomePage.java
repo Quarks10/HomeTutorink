@@ -35,7 +35,7 @@ public class HomePage extends AppCompatActivity {
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDashboardParent = new Intent(HomePage.this,ParentDashboard.class);
+                Intent toDashboardParent = new Intent(HomePage.this,ParentDashboardCal.class);
                 startActivity(toDashboardParent);
             }
         });
@@ -75,6 +75,7 @@ public class HomePage extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
                 Intent toLogout = new Intent(HomePage.this,MainActivity.class);
                 startActivity(toLogout);
             }

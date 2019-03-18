@@ -6,6 +6,7 @@ class JobPosting {
     public String childID;
     public String childName;
     public String eduLevel;
+    public String level;
     public String subject;
     public String location;
     public String date;
@@ -16,11 +17,12 @@ class JobPosting {
 
     }
 
-    public JobPosting(String postID, String childID, String childName, String eduLevel, String subject, String location, String date, String time, String status) {
+    public JobPosting(String postID, String childID, String childName, String eduLevel, String level, String subject, String location, String date, String time, String status) {
         this.postID = postID;
         this.childID = childID;
         this.childName = childName;
         this.eduLevel = eduLevel;
+        this.level = level;
         this.subject = subject;
         this.location = location;
         this.date = date;
@@ -58,6 +60,14 @@ class JobPosting {
 
     public void setEduLevel(String eduLevel) {
         this.eduLevel = eduLevel;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public String getSubject() {

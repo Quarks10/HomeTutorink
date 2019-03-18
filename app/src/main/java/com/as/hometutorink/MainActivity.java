@@ -9,6 +9,9 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
 
     private CalendarView cv;
@@ -17,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button tutor_button;
     private static final String TAG = "MyActivity";
     private String choose_mode = "";
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

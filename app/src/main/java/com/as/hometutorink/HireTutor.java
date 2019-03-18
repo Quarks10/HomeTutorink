@@ -214,7 +214,7 @@ public class HireTutor extends AppCompatActivity {
         });
     }
 
-    public void InsertPostingDB(String childID, String childEduLevel, String childselected, String subject, String location, String date, String time)
+    public void InsertPostingDB(String childID, String childEduLevel,String childLevel, String childselected, String subject, String location, String date, String time)
     {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -229,6 +229,7 @@ public class HireTutor extends AppCompatActivity {
         Map<String, String> job_details = new HashMap<String, String>();
         job_details.put("child_id",  childID);
         job_details.put("edu_level",  childEduLevel);
+        job_details.put("level",  childLevel);
         job_details.put("child_name", childselected);
         job_details.put("post_id", postingID);
         job_details.put("subject", subject);
@@ -268,7 +269,7 @@ public class HireTutor extends AppCompatActivity {
                 }
 
 
-                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), arrayListChildren.get(index_selected).getEdulevel() ,childselected, subject, location, date, time);
+                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), arrayListChildren.get(index_selected).getEdulevel(),  arrayListChildren.get(index_selected).getLevel(),childselected, subject, location, date, time);
 
             }
 

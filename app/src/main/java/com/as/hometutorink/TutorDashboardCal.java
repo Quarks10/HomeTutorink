@@ -3,7 +3,7 @@ package com.as.hometutorink;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class tutorDashboardCal extends AppCompatActivity {
+public class TutorDashboardCal extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

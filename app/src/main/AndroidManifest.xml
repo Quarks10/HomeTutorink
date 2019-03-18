@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TutorIncomeEarned" />
         <activity android:name=".ParentPayment" />
-        <activity android:name=".tutorDashboardCal" />
+        <activity android:name=".TutorDashboardCal" />
         <activity android:name=".ParentDashboardCal" />
         <activity android:name=".ListOfChild" />
         <activity android:name=".HomePage" />
@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HireTutor" />
         <activity android:name=".ChildInfo" />
-        <activity android:name=".SignUpParent" />
+        <activity android:name=".SignUp" />
         <activity android:name=".LoginPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
