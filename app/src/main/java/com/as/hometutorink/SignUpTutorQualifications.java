@@ -79,7 +79,7 @@ public class SignUpTutorQualifications extends AppCompatActivity {
 
         for (String subjects : listSubjects)
         {
-            myRef.child(userID).child("subjects").setValue(subjects);
+            myRef.child(userID).child("subjects").push().child("subject").setValue(subjects);
         }
 
 

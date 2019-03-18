@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import java.util.Map;
 
 public class JobListSecondary extends AppCompatActivity {
 
+    ImageButton btnHomePage;
     Button job_primary;
     FirebaseAuth mAuth;
 
@@ -32,11 +34,19 @@ public class JobListSecondary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_list_secondary);
 
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePageTutor.class);
+                startActivity(toHomePage);
+            }
+        });
+
+
         mAuth = FirebaseAuth.getInstance();
         init();
-
-
-
 
 
 
@@ -186,7 +196,17 @@ public class JobListSecondary extends AppCompatActivity {
         applybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showMessage("Successfully Applied");
                 ApplyJob(jobPosting.getPostID());
+            }
+        });
+
+        Button contactbtn = myLayout.findViewById(R.id.contactParentbtn);
+        contactbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toMessage = new Intent(getApplicationContext(),Message.class);
+                startActivity(toMessage);
             }
         });
 

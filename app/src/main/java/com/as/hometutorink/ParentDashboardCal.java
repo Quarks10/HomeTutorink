@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,12 +23,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
+import java.util.TimeZone;
 
 public class ParentDashboardCal extends AppCompatActivity {
 
+    ImageButton btnHomePage;
     CalendarView cv;
     FirebaseAuth mAuth;
     TextView DOW;
@@ -37,6 +43,17 @@ public class ParentDashboardCal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_dashboard_cal);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         cv = findViewById(R.id.calendarViewParent);
         DOW = findViewById(R.id.text_dow);
@@ -46,11 +63,30 @@ public class ParentDashboardCal extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
+
+                Date c = Calendar.getInstance().getTime();
+                System.out.println("Current time => " + c);
+
+                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+                String formattedDate = df.format(c);
+               // System.out.println("Current time of the day using Date - 12 hour format: " + formattedDate);
+
+               // DateTime today = DateTime.today(TimeZone.getDefault());
+            //    DateTime firstDayThisWeek = today; //start value
+             //   int todaysWeekday = today.getWeekDay();
+              //  int SUNDAY = 1;
+             //   if(todaysWeekday > SUNDAY){
+                 //   int numDaysFromSunday = todaysWeekday - SUNDAY;
+               //     firstDayThisWeek = today.minusDays(numDaysFromSunday);
+
+
+
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, dayOfMonth);
-                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                int dayOfWeek = calendar.get(Calendar.SUNDAY);
 
-                DOW.setText(Integer.toString(dayOfWeek));
+               // DOW.setText(Integer.toString(dayOfWeek));
+                DOW.setText(formattedDate);
 
                 Log.d(TAG, "onSelectedDayChange: " + dayOfWeek);
 
@@ -152,10 +188,6 @@ public class ParentDashboardCal extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
-    }
-
-    public interface FirebaseCallbackViewApp {
-        void onCallBack(ArrayList<TutorApplication> tutorApplication);
     }
 
 }

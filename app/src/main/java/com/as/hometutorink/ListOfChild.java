@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,12 +25,22 @@ public class ListOfChild extends AppCompatActivity {
 
     Button doneButton, addChildButton , btncopy;
     FirebaseAuth mAuth;
-
+    ImageButton btnHomePage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_child);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
 
         doneButton = findViewById(R.id.doneChildbtn);
         addChildButton = findViewById(R.id.addNewChildbtn);

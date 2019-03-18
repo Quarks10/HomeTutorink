@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
-    Button dashboard, hire_tutor, tutor_request, messages, children, logout;
+    Button dashboard, hire_tutor, tutor_request, messages, children, payment, logout;
     FirebaseAuth mAuth;
 
     @Override
@@ -24,12 +24,9 @@ public class HomePage extends AppCompatActivity {
         tutor_request = findViewById(R.id.tutorreq_sidebar);
         messages = findViewById(R.id.message_sidebar);
         children = findViewById(R.id.children_sidebar);
+        payment = findViewById(R.id.payment_sidebar);
         logout = findViewById(R.id.logout_sidebar);
         mAuth = FirebaseAuth.getInstance();
-
-
-        Toast.makeText(HomePage.this, "Current user is " + mAuth.getUid(),
-                Toast.LENGTH_SHORT).show();
 
 
         dashboard.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +66,14 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toChildren = new Intent(HomePage.this,ListOfChild.class);
                 startActivity(toChildren);
+            }
+        });
+
+        payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toPayment = new Intent(HomePage.this,ParentPayment.class);
+                startActivity(toPayment);
             }
         });
 

@@ -7,6 +7,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,32 +21,26 @@ import com.google.firebase.database.ValueEventListener;
 
 public class TutorRequestOpen extends AppCompatActivity {
 
+    ImageButton btnHomePage;
     FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_request_open);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         init();
-
-/*        view_application.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toviewapplication = new Intent(TutorRequestOpen.this,TutorRequestViewApp.class);
-                startActivity(toviewapplication);
-            }
-        });
-
-        view_recommended.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toviewrecommmended = new Intent(TutorRequestOpen.this,TutorRequestRecommend.class);
-                startActivity(toviewrecommmended);
-            }
-        });
-
-        */
     }
 
     public void init()

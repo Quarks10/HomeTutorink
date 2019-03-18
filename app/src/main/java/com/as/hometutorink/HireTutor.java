@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -34,6 +35,7 @@ import java.util.Map;
 
 public class HireTutor extends AppCompatActivity {
 
+    private ImageButton btnHomePage;
     private Button postjob;
     private Spinner spinner_child_hire, spinner_location_list;
     private RadioGroup rgSubject;
@@ -46,6 +48,17 @@ public class HireTutor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hire_tutor);
+
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
 
         Time = findViewById(R.id.TimeStarttxt);
         Date = findViewById(R.id.dateStarttxt);

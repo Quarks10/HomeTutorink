@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePageTutor extends AppCompatActivity {
 
-    Button dashboard, job_list, job_history, accept_jobs, messages, logout;
+    Button dashboard, job_list, job_history, accept_jobs, messages, income, logout;
     FirebaseAuth mAuth;
 
     @Override
@@ -23,13 +23,14 @@ public class HomePageTutor extends AppCompatActivity {
         job_history = findViewById(R.id.jobhistory_sidebar);
         accept_jobs = findViewById(R.id.acceptjobs_sidebar);
         messages = findViewById(R.id.message_sidebar_tutor);
+        income = findViewById(R.id.income_earned_tutor);
         logout = findViewById(R.id.logout_sidebar);
         mAuth = FirebaseAuth.getInstance();
 
         dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toDashboardTutor = new Intent(HomePageTutor.this,TutorDashboard.class);
+                Intent toDashboardTutor = new Intent(HomePageTutor.this,TutorDashboardCal.class);
                 startActivity(toDashboardTutor);
             }
         });
@@ -63,6 +64,14 @@ public class HomePageTutor extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toMessages = new Intent(HomePageTutor.this,Message.class);
                 startActivity(toMessages);
+            }
+        });
+
+        income.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toIncome = new Intent(HomePageTutor.this,TutorIncomeEarned.class);
+                startActivity(toIncome);
             }
         });
 

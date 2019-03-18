@@ -8,6 +8,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,12 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.nio.InvalidMarkException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class JobListPrimary extends AppCompatActivity {
 
+    ImageButton btnHomePage;
     Button job_secondary;
     FirebaseAuth mAuth;
 
@@ -34,6 +37,16 @@ public class JobListPrimary extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_job_list_primary);
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePageTutor.class);
+                startActivity(toHomePage);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         init();
@@ -167,8 +180,8 @@ public class JobListPrimary extends AppCompatActivity {
 
         myRef.child(postingID).child(currentUser.getUid()).setValue(application_details);
 
-        Intent toDashboard = new Intent(JobListPrimary.this, TutorDashboardCal.class);
-        startActivity(toDashboard);
+        //Intent toDashboard = new Intent(JobListPrimary.this, TutorDashboardCal.class);
+      //  startActivity(toDashboard);
 
     }
 
@@ -186,7 +199,17 @@ public class JobListPrimary extends AppCompatActivity {
         applybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                showMessage("Successfully Applied");
                 ApplyJob(jobPosting.getPostID());
+            }
+        });
+
+        Button contactbtn = myLayout.findViewById(R.id.contactParentbtn);
+        contactbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toMessage = new Intent(getApplicationContext(),Message.class);
+                startActivity(toMessage);
             }
         });
 

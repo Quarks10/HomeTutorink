@@ -128,15 +128,11 @@ public class LoginPage extends AppCompatActivity {
     {
         String curr_mode = getIntent().getStringExtra("mode");
 
-        Log.d(TAG, "login:" + curr_mode);
-
         if (curr_mode.equals("Parent")) {
-            Log.d(TAG, "login: in" + curr_mode);
             Intent toSignIn = new Intent(LoginPage.this, HomePage.class);
             startActivity(toSignIn);
 
         } else if (curr_mode.equals("Tutor")) {
-            Log.d(TAG, "login: in" + curr_mode);
             Intent toSignIn = new Intent(LoginPage.this, HomePageTutor.class);
             startActivity(toSignIn);
         }

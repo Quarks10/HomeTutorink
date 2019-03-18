@@ -19,11 +19,8 @@
         <activity android:name=".JobHistoryPrimary" />
         <activity android:name=".JobListPrimary" />
         <activity android:name=".JobListSecondary" />
-        <activity android:name=".ParentDashboard" />
         <activity android:name=".SignUpTutorQualifications" />
         <activity android:name=".TutorAcceptJobsPrimary" />
-        <activity android:name=".TutorDashboard" />
-        <activity android:name=".TutorRequestRecommend" />
         <activity android:name=".TutorRequestViewApp" />
         <activity android:name=".TutorRequestOpen" />
         <activity android:name=".ChildDetail" />

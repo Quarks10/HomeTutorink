@@ -28,18 +28,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         parent_button = findViewById(R.id.ParentLoginbtn);
         tutor_button = findViewById(R.id.TutorLoginbtn);
-     //   cv = findViewById(R.id.calendarView);
-      //  tv = findViewById(R.id.text_calendar);
 
-
-       // int a = (int) cv.getDate();
-
-       // tv.setText(Integer.toString(a));
         parent_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 choose_mode = parent_button.getText().toString();
-                Log.d(TAG, choose_mode);
                 set_mode(choose_mode);
             }
         });
@@ -48,11 +41,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 choose_mode = tutor_button.getText().toString();
-                Log.d(TAG, choose_mode);
                 set_mode(choose_mode);
             }
         });
-        //Log.d(TAG, "createUserWithEmail:success");
     }
 
 

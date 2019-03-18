@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 public class ChildInfo extends AppCompatActivity {
 
+    private ImageButton btnHomePage;
     private Button btnAddChild;
     private EditText child_name;
     private RadioGroup rgEducation;
@@ -34,6 +36,17 @@ public class ChildInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_info);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         runSpinner();
         addListenerOnButton();

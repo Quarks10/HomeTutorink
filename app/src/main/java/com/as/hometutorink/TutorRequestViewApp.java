@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import java.util.Map;
 
 public class TutorRequestViewApp extends AppCompatActivity {
 
+    ImageButton btnHomePage;
     FirebaseAuth mAuth;
     private static final String TAG = "ViewApp";
 
@@ -33,6 +35,17 @@ public class TutorRequestViewApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_request_view_app);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                startActivity(toHomePage);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
         init();
     }
@@ -67,13 +80,10 @@ public class TutorRequestViewApp extends AppCompatActivity {
 
                 for (DataSnapshot value: dataSnapshot.getChildren())
                 {
-                    // generateApplication(value.getKey(),value.child("status").getValue().toString());
                     TutorApplication tutorApplication = new TutorApplication(value.getKey(),value.child("status").getValue().toString());
                     tutors.add(tutorApplication);
                 }
 
-
-                // generateAvailableJobList(parentName,parentAddress,jobPosting);
                 firebaseCallbackViewApp.onCallBack(tutors);
 
             }
@@ -93,7 +103,6 @@ public class TutorRequestViewApp extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                   // showMessage(value.child("first_name").getValue().toString());
                     if (status.equals("Apply")){
                         ArrayList<String> list_qualifications = new ArrayList<String>();
                         String tutorname = dataSnapshot.child("first_name").getValue().toString() + " " + dataSnapshot.child("last_name").getValue().toString();
@@ -144,6 +153,12 @@ public class TutorRequestViewApp extends AppCompatActivity {
         myRef2.child(currentuser.getUid()).child(postingID).child("tutor_id").setValue(tutorID);
         myRef2.child(currentuser.getUid()).child(postingID).child("tutor_name").setValue(tutorName);
 
+        FirebaseDatabase database3 = FirebaseDatabase.getInstance();
+        DatabaseReference myRef3 = database2.getReference("jobaccepted");
+
+        myRef3.child(tutorID).child(postingID).child("status").setValue("OnGoing");
+        myRef3.child(tutorID).child(postingID).child("parent_id").setValue(currentuser.getUid());
+
         Intent toDashboard = new Intent(TutorRequestViewApp.this, ParentDashboardCal.class);
         startActivity(toDashboard);
 
@@ -166,18 +181,14 @@ public class TutorRequestViewApp extends AppCompatActivity {
             }
         });
 
-        /*
-
-        CardView cv = myLayout.findViewById(R.id.parentRequestCard);
-
-        cv.setOnClickListener(new View.OnClickListener() {
+        Button contactbtn = myLayout.findViewById(R.id.contactTutorbtn);
+        contactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toTutorViewApp = new Intent(TutorRequestOpen.this, TutorRequestViewApp.class);
-                startActivity(toTutorViewApp);
+                Intent toMessage = new Intent(getApplicationContext(),Message.class);
+                startActivity(toMessage);
             }
         });
-*/
 
         TextView tutorname = myLayout.findViewById(R.id.tutorNametxt);
         tutorname.setText(tutorName);
@@ -185,14 +196,6 @@ public class TutorRequestViewApp extends AppCompatActivity {
         TextView tutorexp = myLayout.findViewById(R.id.tutorExptxt);
         tutorexp.setText("Experience: " + experience);
 
-        /*
-        TextView childedulevel = myLayout.findViewById(R.id.childEdulvltxt);
-        if (jobPosting.getEduLevel().equals("Primary School")){
-            childedulevel.setText("Standard: " + jobPosting.getLevel());
-        }else{
-            childedulevel.setText("Form: " + jobPosting.getLevel());
-        }
-        */
 
         String exp = "Qualifications: ";
         for (String qualifications: qualification_list) {

@@ -3,72 +3,171 @@ package com.as.hometutorink;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class TutorAcceptJobsPrimary extends AppCompatActivity {
 
     FirebaseAuth mAuth;
+    ImageButton btnHomePage;
+    private static final String TAG = "AcceptJob";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_accept_jobs_primary);
+
+        btnHomePage = findViewById(R.id.homebtn);
+
+        btnHomePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toHomePage = new Intent(getApplicationContext(),HomePageTutor.class);
+                startActivity(toHomePage);
+            }
+        });
+
         mAuth = FirebaseAuth.getInstance();
-       // init();
+      //  init();
     }
 
+    public void init() {
+        //generateDashBoard();
 
+        readData(new TutorDashboardCal.FirebaseCallbackTutorDashboard() {
+            @Override
+            public void onCallBack(final ArrayList<String> onGoingJob, final ArrayList<String> parentKey) {
 
-    public void init()
-    {
+                getParentsData(new FirebaseCallbackAcceptJob() {
+                    @Override
+                    public void onCallBack(ArrayList<Parent> parent) {
 
-        String userID = mAuth.getUid();
+                        for (int i = 0; i<onGoingJob.size(); i++){
 
-        showMessage(userID);
+                            Parent currparent = new Parent();
 
-        DatabaseReference refChildren = FirebaseDatabase.getInstance()
-                .getReference("jobPosting").child(userID);
+                            for (Parent tmp: parent) {
+                                if(tmp.getParentID().equals(parentKey.get(i))){
+                                    currparent = tmp;
+                                }
+                            }
+                            generateDashBoard(onGoingJob.get(i), parentKey.get(i),currparent);
+                        }
 
-        refChildren.addValueEventListener(new ValueEventListener() {
+                    }
+                });
+            }
+        });
+
+    }
+
+    private void readData(final TutorDashboardCal.FirebaseCallbackTutorDashboard firebaseCallbackTutorDashboard){
+
+        FirebaseUser curruser = mAuth.getCurrentUser();
+        final ArrayList<String> ongoingjob = new ArrayList<String>();
+        final ArrayList<String> parentkey = new ArrayList<String>();
+        DatabaseReference refParents = FirebaseDatabase.getInstance().getReference("jobaccepted");
+        refParents.child(curruser.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot uniqueKeySnapshot : dataSnapshot.getChildren()){
-                    //Loop 1 to go through all the child nodes of users
-                   /* for(DataSnapshot booksSnapshot : uniqueKey.child("Books").getChildren()){
-                        //loop 2 to go through all the child nodes of books node
-                        String bookskey = booksSnapshot.getKey();
-                        String booksValue = booksSnapshot.getValue();
+                for (DataSnapshot value: dataSnapshot.getChildren())
+                {
+                    if(value.child("status").getValue().equals("OnGoing")){
+                        ongoingjob.add(value.getKey());
+                        parentkey.add(value.child("parent_id").getValue().toString());
                     }
-                    */
-                    //  Children children = uniqueKeySnapshot.getValue(Children.class);
+                }
 
-                    String childrenname = uniqueKeySnapshot.child("name").getValue().toString();
-                    String childrenedulevel = uniqueKeySnapshot.child("edulevel").getValue().toString();
-                    String childrenlevel = uniqueKeySnapshot.child("level").getValue().toString();
-                    String childrenid = uniqueKeySnapshot.child("id").getValue().toString();
+                firebaseCallbackTutorDashboard.onCallBack(ongoingjob,parentkey);
 
-                    // showMessage(childrenname);
-                    // showMessage(childrenedulevel);
+            }
 
-                    Children children = new Children(childrenname,childrenedulevel,childrenlevel,childrenid);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    showMessage(children.getChildname());
-                    generateChildList(children);
+            }
+        });
+
+    }
+
+    public void getParentsData(final FirebaseCallbackAcceptJob firebaseCallbackAcceptJob) {
+
+
+        final ArrayList<Parent> parent = new ArrayList<Parent>();
+        DatabaseReference refparents = FirebaseDatabase.getInstance().getReference("parent");
+        refparents.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds: dataSnapshot.getChildren()) {
+
+                        Parent tempParent = new Parent(ds.child("first_name").getValue().toString(),ds.child("last_name").getValue().toString(),
+                                ds.child("address").getValue().toString(),ds.getKey());
+
+                        parent.add(tempParent);
 
                 }
+
+                firebaseCallbackAcceptJob.onCallBack(parent);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+    public void generateDashBoard(String post_id, String parent_id, final Parent currparent){
+
+
+        DatabaseReference refposting = FirebaseDatabase.getInstance().getReference("jobposting");
+        refposting.child(parent_id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds: dataSnapshot.getChildren()) {
+
+
+                    if(ds.child("status").getValue().equals("Accepted")){
+
+                        String parentname = currparent.getFirst_name() + " " + currparent.getLast_name();
+                        String childname = ds.child("child_name").getValue().toString();
+                        String childlevel = ds.child("level").getValue().toString();
+                        String childedulevel = ds.child("edu_level").getValue().toString();
+                        String location = ds.child("location").getValue().toString();
+                        String address = currparent.getAddress();
+                        String subject = ds.child("subject").getValue().toString();
+                        String datetime = ds.child("date").getValue().toString() + " " + ds.child("time").getValue().toString();
+
+                        generateDashboardList(parentname,childname,childlevel,childedulevel,location,address,subject,datetime);
+
+
+
+                    }
+
+
+                }
+
             }
 
             @Override
@@ -78,34 +177,60 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         });
     }
 
-    public void generateChildList(Children children)
-    {
-        LinearLayout mainLayout = findViewById(R.id.linearlayoutListChild);
+
+    public void generateDashboardList(String parentname, String childname, String childlevel, String childedulevel, String location, String address, String subject, String datetime) {
+
+        LinearLayout mainLayout = findViewById(R.id.acceptjobsll);
 
         LayoutInflater inflater = getLayoutInflater();
-        View myLayout = inflater.inflate(R.layout.layout_button_list_child, mainLayout, false);
+        View myLayout = inflater.inflate(R.layout.jobacceptcard, mainLayout, false);
 
-        TextView childname = myLayout.findViewById(R.id.listchildNamelbl);
-        String newchildname = "Name: " + children.getChildname();
-        childname.setText(newchildname);
+        /*
+        Button applybtn = myLayout.findViewById(R.id.hirebtn);
+        applybtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AcceptJob(postID, tutorKey, tutorApplications);
+            }
+        });
+*/
+        /*
 
-        TextView childedulevel = myLayout.findViewById(R.id.listchildEdulbl);
-        String newchildedulevel = children.getEdulevel();
-        childedulevel.setText(newchildedulevel);
-        // childedulevel.setText(children.getEdulevel());
+        CardView cv = myLayout.findViewById(R.id.parentRequestCard);
 
+        cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toTutorViewApp = new Intent(TutorRequestOpen.this, TutorRequestViewApp.class);
+                startActivity(toTutorViewApp);
+            }
+        });
+*/
+        TextView parentName = myLayout.findViewById(R.id.parentNametxt);
+        parentName.setText(parentname);
 
-        TextView childlevel = myLayout.findViewById(R.id.listchildLevellbl);
-        if(children.getEdulevel().equals("Primary School"))
-        {
-            String newchildlevel = "Standard " + children.getLevel();
-            childlevel.setText(newchildlevel);
-        }else
-        {
-            String newchildlevel = "Form " + children.getLevel();
-            childlevel.setText(newchildlevel);
+        TextView childName = myLayout.findViewById(R.id.childNametxt);
+        childName.setText(childname);
+
+        TextView childLevel = myLayout.findViewById(R.id.childEdulvltxt);
+        if(childedulevel.equals("Primary School")){
+            childLevel.setText("Standard: " + childlevel );
+        }else{
+            childLevel.setText("Form: " + childlevel );
         }
 
+        TextView subject_text = myLayout.findViewById(R.id.subjecttxt);
+        subject_text.setText("Subject: " + subject);
+
+        TextView dateTime = myLayout.findViewById(R.id.datetxt);
+        dateTime.setText("DateTime: " + datetime);
+
+        TextView locationName = myLayout.findViewById(R.id.loctxt);
+        if(location.equals("In my location")){
+            locationName.setText("Location: " + address);
+        }else{
+            locationName.setText("Location: " + location);
+        }
 
         mainLayout.addView(myLayout);
 
@@ -116,5 +241,10 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
     }
+
+    public interface FirebaseCallbackAcceptJob {
+        void onCallBack(ArrayList<Parent> parent);
+    }
+
 
 }
