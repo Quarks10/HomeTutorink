@@ -118,7 +118,7 @@ public class ParentDashboardCal extends AppCompatActivity {
                         String childname = ds.child("child_name").getValue().toString();
                         String tutorname = ds.child("tutor_name").getValue().toString();
                         String subject = ds.child("subject").getValue().toString();
-                        String datetime = ds.child("date").getValue().toString() + " " + ds.child("time").getValue().toString();
+                        String datetime = ds.child("date").getValue().toString();
 
                         generateDashboardList(childname,tutorname,subject,datetime);
 
@@ -147,15 +147,16 @@ public class ParentDashboardCal extends AppCompatActivity {
         View myLayout = inflater.inflate(R.layout.parentdbcard, mainLayout, false);
 
 
-        /*
-        Button applybtn = myLayout.findViewById(R.id.hirebtn);
-        applybtn.setOnClickListener(new View.OnClickListener() {
+
+        Button unsubscribebtn = myLayout.findViewById(R.id.btn_unsub);
+        unsubscribebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AcceptJob(postID, tutorKey, tutorApplications);
+               // AcceptJob(postID, tutorKey, tutorApplications);
+                showMessage("unsubscribe");
             }
         });
-*/
+
         /*
 
         CardView cv = myLayout.findViewById(R.id.parentRequestCard);
@@ -178,7 +179,9 @@ public class ParentDashboardCal extends AppCompatActivity {
         subject_text.setText("Subject: " + subject);
 
         TextView dateTime = myLayout.findViewById(R.id.dashCardTimeTxt);
-        dateTime.setText("DateTime: " + datetime);
+        String testnewline = "Session 1: \nDay: Monday\nStart Time: 13:30\nEndTime: 14:30\n\nSession 2: \nDay: Monday\nStart Time: 13:30\nEndTime: 14:30";
+        //dateTime.setText(testnewline);
+        dateTime.setText("Date: " + datetime);
 
         mainLayout.addView(myLayout);
 

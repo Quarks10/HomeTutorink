@@ -1,5 +1,7 @@
 package com.as.hometutorink;
 
+import java.util.ArrayList;
+
 class JobPosting {
 
     public String postID;
@@ -10,14 +12,14 @@ class JobPosting {
     public String subject;
     public String location;
     public String date;
-    public String time;
+    public ArrayList<SessionData> sessionData;
     public String status;
 
     public JobPosting(){
 
     }
 
-    public JobPosting(String postID, String childID, String childName, String eduLevel, String level, String subject, String location, String date, String time, String status) {
+    public JobPosting(String postID, String childID, String childName, String eduLevel, String level, String subject, String location, String date, ArrayList<SessionData> sessionData, String status) {
         this.postID = postID;
         this.childID = childID;
         this.childName = childName;
@@ -26,7 +28,7 @@ class JobPosting {
         this.subject = subject;
         this.location = location;
         this.date = date;
-        this.time = time;
+        this.sessionData = sessionData;
         this.status = status;
     }
 
@@ -94,12 +96,12 @@ class JobPosting {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
+    public ArrayList<SessionData> getSessionData() {
+        return sessionData;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setSessionData(ArrayList<SessionData> sessionData) {
+        this.sessionData = sessionData;
     }
 
     public String getStatus() {

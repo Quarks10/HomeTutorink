@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.nio.InvalidMarkException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class JobListPrimary extends AppCompatActivity {
@@ -105,10 +106,22 @@ public class JobListPrimary extends AppCompatActivity {
                         String jobsubject = jobSnapshot.child("subject").getValue().toString();
                         String joblocation = jobSnapshot.child("location").getValue().toString();
                         String jobdate = jobSnapshot.child("date").getValue().toString();
-                        String jobtime = jobSnapshot.child("time").getValue().toString();
                         String jobstatus = jobSnapshot.child("status").getValue().toString();
 
-                        JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobtime,jobstatus);
+                        ArrayList<SessionData> jobsessionData = new ArrayList<>();
+                        Iterable<DataSnapshot> snapshotIterator = jobSnapshot.child("session").getChildren();
+                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+
+                        while (iterator.hasNext()) {
+                            DataSnapshot next = (DataSnapshot) iterator.next();
+                            String day = next.child("day").getValue().toString();
+                            String st = next.child("start_time").getValue().toString();
+                            String et = next.child("end_time").getValue().toString();
+                            jobsessionData.add(new SessionData(day,st,et));
+                        }
+
+
+                        JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
 
                         if (jobPosting.getStatus().equals("true") && jobPosting.getEduLevel().equals("Primary School"))
                         {
@@ -242,7 +255,7 @@ public class JobListPrimary extends AppCompatActivity {
         subject.setText(jobPosting.getSubject());
 
         TextView datetime = myLayout.findViewById(R.id.datetxt);
-        String datetimetext = jobPosting.getDate() + ", " + jobPosting.getTime();
+        String datetimetext = jobPosting.getDate();
         datetime.setText("When: " + datetimetext);
 
         TextView location = myLayout.findViewById(R.id.loctxt);

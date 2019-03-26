@@ -57,7 +57,7 @@
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
+            app:layout_constraintBottom_toTopOf="@+id/guideline34"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
@@ -213,13 +213,15 @@
                     android:id="@+id/jobPostedRecll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="visible">
 
                     <android.support.v7.widget.CardView
                         android:id="@+id/parentRecommendations"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"

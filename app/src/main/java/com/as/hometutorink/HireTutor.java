@@ -5,15 +5,18 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
+import android.se.omapi.Session;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -37,21 +40,28 @@ public class HireTutor extends AppCompatActivity {
 
     private ImageButton btnHomePage;
     private Button postjob;
-    private Spinner spinner_child_hire, spinner_location_list;
+    private Spinner spinner_child_hire, spinner_location_list, spinner_num_sessions;
     private RadioGroup rgSubject;
     private RadioButton rbSubject;
     private FirebaseAuth mAuth;
-    private EditText Date,Time;
+    private EditText Date;
     private static final String TAG = "HireTutor";
+
+    //for sessiondata
+
+    private LinearLayout session1, session2, session3, session4, session5;
+    private EditText start1, start2, start3, start4, start5;
+    private EditText end1, end2, end3, end4, end5;
+    private Spinner spin1, spin2, spin3, spin4, spin5;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hire_tutor);
-
-
         btnHomePage = findViewById(R.id.homebtn);
-
         btnHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,10 +70,7 @@ public class HireTutor extends AppCompatActivity {
             }
         });
 
-        Time = findViewById(R.id.TimeStarttxt);
         Date = findViewById(R.id.dateStarttxt);
-        // spinner_child_hire = findViewById(R.id.spinnerChildList);
-        //  spinner_location_list = findViewById(R.id.spinnerLocationList);
         mAuth = FirebaseAuth.getInstance();
         initdbchildren();
 
@@ -91,13 +98,28 @@ public class HireTutor extends AppCompatActivity {
                             myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
                 } else {
-                   // Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
+                    // Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
                 }
             }
         });
 
+        initSessionSpinner();
+        setListenerOnButton();
 
-        Time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+    }
+
+    private void updateLabel(Calendar myCalendar) {
+        String myFormat = "dd/MM/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        Date.setText(sdf.format(myCalendar.getTime()));
+    }
+
+
+    private void runTimeSelector(final EditText TimeStart, final EditText TimeEnd){
+
+
+        TimeStart.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if (hasFocus) {
@@ -108,7 +130,7 @@ public class HireTutor extends AppCompatActivity {
                     mTimePicker = new TimePickerDialog(HireTutor.this, new TimePickerDialog.OnTimeSetListener() {
                         @Override
                         public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                            Time.setText( selectedHour + ":" + selectedMinute);
+                            TimeStart.setText( selectedHour + ":" + selectedMinute);
                         }
                     }, hour, minute, true);//Yes 24 hour time
                     mTimePicker.setTitle("Select Time");
@@ -119,16 +141,125 @@ public class HireTutor extends AppCompatActivity {
             }
         });
 
-
-        setListenerOnButton();
-
+        TimeEnd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Calendar mcurrentTime = Calendar.getInstance();
+                    int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                    int minute = mcurrentTime.get(Calendar.MINUTE);
+                    TimePickerDialog mTimePicker;
+                    mTimePicker = new TimePickerDialog(HireTutor.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                            TimeEnd.setText( selectedHour + ":" + selectedMinute);
+                        }
+                    }, hour, minute, true);//Yes 24 hour time
+                    mTimePicker.setTitle("Select Time");
+                    mTimePicker.show();
+                } else {
+                    //Toast.makeText(getApplicationContext(), "Lost the focus", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
-    private void updateLabel(Calendar myCalendar) {
-        String myFormat = "dd/MM/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+    public void initSessionSpinner(){
+        spinner_num_sessions = findViewById(R.id.spinnerSessionsList);
+        session1 = findViewById(R.id.entriesSessionsI);
+        session2 = findViewById(R.id.entriesSessionsII);
+        session3 = findViewById(R.id.entriesSessionsIII);
+        session4 = findViewById(R.id.entriesSessionsIV);
+        session5 = findViewById(R.id.entriesSessionsV);
 
-        Date.setText(sdf.format(myCalendar.getTime()));
+        spin1 = findViewById(R.id.spinnerDayListI);
+        spin2 = findViewById(R.id.spinnerDayListII);
+        spin3 = findViewById(R.id.spinnerDayListIII);
+        spin4 = findViewById(R.id.spinnerDayListIV);
+        spin5 = findViewById(R.id.spinnerDayListV);
+
+        start1 = findViewById(R.id.TimeStarttxtI);
+        start2 = findViewById(R.id.TimeStarttxtII);
+        start3 = findViewById(R.id.TimeStarttxtIII);
+        start4 = findViewById(R.id.TimeStarttxtIV);
+        start5 = findViewById(R.id.TimeStarttxtV);
+
+        end1 = findViewById(R.id.TimeEndtxtI);
+        end2 = findViewById(R.id.TimeEndtxtII);
+        end3 = findViewById(R.id.TimeEndtxtIII);
+        end4 = findViewById(R.id.TimeEndtxtIV);
+        end5 = findViewById(R.id.TimeEndtxtV);
+
+
+        ArrayAdapter<String> adapterCourts = new ArrayAdapter<String>(HireTutor.this,
+                android.R.layout.simple_expandable_list_item_1,
+                getResources().getStringArray(R.array.numsessions));
+        adapterCourts.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_num_sessions.setAdapter(adapterCourts);
+
+
+        ArrayAdapter<String> adapterDaysName = new ArrayAdapter<String>(HireTutor.this,
+                android.R.layout.simple_expandable_list_item_1,
+                getResources().getStringArray(R.array.daysname));
+        adapterDaysName.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin1.setAdapter(adapterDaysName);
+        spin2.setAdapter(adapterDaysName);
+        spin3.setAdapter(adapterDaysName);
+        spin4.setAdapter(adapterDaysName);
+        spin5.setAdapter(adapterDaysName);
+
+        runTimeSelector(start1,end1);
+        runTimeSelector(start2,end2);
+        runTimeSelector(start3,end3);
+        runTimeSelector(start4,end4);
+        runTimeSelector(start5,end5);
+
+
+        spinner_num_sessions.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String curr_sessions = String.valueOf(spinner_num_sessions.getSelectedItem());
+
+                if(curr_sessions.equals("1")){
+                    session1.setVisibility(View.VISIBLE);
+                }
+
+                if(curr_sessions.equals("2")){
+                    session1.setVisibility(View.VISIBLE);
+                    session2.setVisibility(View.VISIBLE);
+                }
+
+                if(curr_sessions.equals("3")){
+                    session1.setVisibility(View.VISIBLE);
+                    session2.setVisibility(View.VISIBLE);
+                    session3.setVisibility(View.VISIBLE);
+                }
+
+                if(curr_sessions.equals("4")){
+                    session1.setVisibility(View.VISIBLE);
+                    session2.setVisibility(View.VISIBLE);
+                    session3.setVisibility(View.VISIBLE);
+                    session4.setVisibility(View.VISIBLE);
+                }
+
+                if(curr_sessions.equals("5")){
+                    session1.setVisibility(View.VISIBLE);
+                    session2.setVisibility(View.VISIBLE);
+                    session3.setVisibility(View.VISIBLE);
+                    session4.setVisibility(View.VISIBLE);
+                    session5.setVisibility(View.VISIBLE);
+                }
+
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     public void initdbchildren() {
@@ -197,10 +328,36 @@ public class HireTutor extends AppCompatActivity {
     public void setListenerOnButton() {
         postjob = findViewById(R.id.postJobbtn);
         Date = findViewById(R.id.dateStarttxt);
-        Time = findViewById(R.id.TimeStarttxt);
         rgSubject = findViewById(R.id.rgSubjectHire);
         spinner_location_list = findViewById(R.id.spinnerLocationList);
         spinner_child_hire = findViewById(R.id.spinnerChildList);
+
+        //sessions
+
+        session1 = findViewById(R.id.entriesSessionsI);
+        session2 = findViewById(R.id.entriesSessionsII);
+        session3 = findViewById(R.id.entriesSessionsIII);
+        session4 = findViewById(R.id.entriesSessionsIV);
+        session5 = findViewById(R.id.entriesSessionsV);
+
+        spin1 = findViewById(R.id.spinnerDayListI);
+        spin2 = findViewById(R.id.spinnerDayListII);
+        spin3 = findViewById(R.id.spinnerDayListIII);
+        spin4 = findViewById(R.id.spinnerDayListIV);
+        spin5 = findViewById(R.id.spinnerDayListV);
+
+        start1 = findViewById(R.id.TimeStarttxtI);
+        start2 = findViewById(R.id.TimeStarttxtII);
+        start3 = findViewById(R.id.TimeStarttxtIII);
+        start4 = findViewById(R.id.TimeStarttxtIV);
+        start5 = findViewById(R.id.TimeStarttxtV);
+
+        end1 = findViewById(R.id.TimeEndtxtI);
+        end2 = findViewById(R.id.TimeEndtxtII);
+        end3 = findViewById(R.id.TimeEndtxtIII);
+        end4 = findViewById(R.id.TimeEndtxtIV);
+        end5 = findViewById(R.id.TimeEndtxtV);
+
 
 
         postjob.setOnClickListener(new View.OnClickListener() {
@@ -211,15 +368,56 @@ public class HireTutor extends AppCompatActivity {
                 int index_selected = spinner_child_hire.getSelectedItemPosition();
                 int selectedID = rgSubject.getCheckedRadioButtonId();
                 rbSubject = findViewById(selectedID);
+                ArrayList<SessionData> list_sessionData = new ArrayList<SessionData>();
+
+                if(session1.getVisibility() == View.VISIBLE){
+                    String st = start1.getText().toString();
+                    String et = end1.getText().toString();
+                    String day = String.valueOf(spin1.getSelectedItem());
+                    SessionData sessionData = new SessionData(day,st,et);
+                    list_sessionData.add(sessionData);
+                }
+
+
+                if(session2.getVisibility() == View.VISIBLE){
+                    String st = start2.getText().toString();
+                    String et = end2.getText().toString();
+                    String day = String.valueOf(spin2.getSelectedItem());
+                    SessionData sessionData = new SessionData(day,st,et);
+                    list_sessionData.add(sessionData);
+                }
+
+                if(session3.getVisibility() == View.VISIBLE){
+                    String st = start3.getText().toString();
+                    String et = end3.getText().toString();
+                    String day = String.valueOf(spin3.getSelectedItem());
+                    SessionData sessionData = new SessionData(day,st,et);
+                    list_sessionData.add(sessionData);
+                }
+
+                if(session4.getVisibility() == View.VISIBLE){
+                    String st = start4.getText().toString();
+                    String et = end4.getText().toString();
+                    String day = String.valueOf(spin2.getSelectedItem());
+                    SessionData sessionData = new SessionData(day,st,et);
+                    list_sessionData.add(sessionData);
+                }
+
+                if(session5.getVisibility() == View.VISIBLE){
+                    String st = start5.getText().toString();
+                    String et = end5.getText().toString();
+                    String day = String.valueOf(spin5.getSelectedItem());
+                    SessionData sessionData = new SessionData(day,st,et);
+                    list_sessionData.add(sessionData);
+                }
 
                 String location = String.valueOf(spinner_location_list.getSelectedItem());
                 String childselected = String.valueOf(spinner_child_hire.getSelectedItem());
                 String subject = rbSubject.getText().toString();
                 String date = Date.getText().toString();
-                String time = Time.getText().toString();
 
 
-                start_db(index_selected, childselected, subject, location, date, time);
+                start_db(index_selected, childselected, subject, location, date, list_sessionData);
 
                 Intent toJobList = new Intent(HireTutor.this,TutorRequestOpen.class);
                 startActivity(toJobList);
@@ -227,36 +425,7 @@ public class HireTutor extends AppCompatActivity {
         });
     }
 
-    public void InsertPostingDB(String childID, String childEduLevel,String childLevel, String childselected, String subject, String location, String date, String time)
-    {
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("jobposting");
-
-        String postingID = FirebaseDatabase.getInstance().getReference().child("jobposting").push().getKey();
-
-
-        Map<String, String> job_details = new HashMap<String, String>();
-        job_details.put("child_id",  childID);
-        job_details.put("edu_level",  childEduLevel);
-        job_details.put("level",  childLevel);
-        job_details.put("child_name", childselected);
-        job_details.put("post_id", postingID);
-        job_details.put("subject", subject);
-        job_details.put("location", location);
-        job_details.put("date", date);
-        job_details.put("time", time);
-        job_details.put("status", "true");
-
-
-        myRef.child(currentUser.getUid()).child(postingID).setValue(job_details);
-    }
-
-
-    public void start_db(final int index_selected, final String childselected, final String subject, final String location, final String date, final String time)
+    public void start_db(final int index_selected, final String childselected, final String subject, final String location, final String date, final ArrayList<SessionData> sessionData)
     {
         String userID = mAuth.getUid();
         final ArrayList<Children> arrayListChildren = new ArrayList<Children>();
@@ -282,7 +451,7 @@ public class HireTutor extends AppCompatActivity {
                 }
 
 
-                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), arrayListChildren.get(index_selected).getEdulevel(),  arrayListChildren.get(index_selected).getLevel(),childselected, subject, location, date, time);
+                InsertPostingDB(arrayListChildren.get(index_selected).getChildID(), arrayListChildren.get(index_selected).getEdulevel(),  arrayListChildren.get(index_selected).getLevel(),childselected, subject, location, date, sessionData);
 
             }
 
@@ -292,10 +461,42 @@ public class HireTutor extends AppCompatActivity {
             }
         });
 
-
-
-     //   return arrayListChildren.get(index).getChildID();
-
     }
+
+
+    public void InsertPostingDB(String childID, String childEduLevel,String childLevel, String childselected, String subject, String location, String date, ArrayList<SessionData> sessionData)
+    {
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("jobposting");
+
+        String postingID = FirebaseDatabase.getInstance().getReference().child("jobposting").push().getKey();
+
+
+        Map<String, String> job_details = new HashMap<String, String>();
+        job_details.put("child_id",  childID);
+        job_details.put("edu_level",  childEduLevel);
+        job_details.put("level",  childLevel);
+        job_details.put("child_name", childselected);
+        job_details.put("post_id", postingID);
+        job_details.put("subject", subject);
+        job_details.put("location", location);
+        job_details.put("date", date);
+        job_details.put("status", "true");
+
+        myRef.child(currentUser.getUid()).child(postingID).setValue(job_details);
+
+        for (SessionData sd:sessionData) {
+            String sessionID = FirebaseDatabase.getInstance().getReference().child("jobposting").child(currentUser.getUid()).child(postingID).child("session").push().getKey();
+            myRef.child(currentUser.getUid()).child(postingID).child("session").child(sessionID).child("day").setValue(sd.getDay());
+            myRef.child(currentUser.getUid()).child(postingID).child("session").child(sessionID).child("start_time").setValue(sd.getStart_time());
+            myRef.child(currentUser.getUid()).child(postingID).child("session").child(sessionID).child("end_time").setValue(sd.getEnd_time());
+        }
+    }
+
+
 
 }
