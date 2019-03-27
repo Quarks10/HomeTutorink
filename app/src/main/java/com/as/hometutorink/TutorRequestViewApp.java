@@ -298,7 +298,7 @@ public class TutorRequestViewApp extends AppCompatActivity {
         FirebaseDatabase database2 = FirebaseDatabase.getInstance();
         DatabaseReference myRef2 = database2.getReference("jobposting");
 
-        myRef2.child(currentuser.getUid()).child(postingID).child("status").setValue("Accepted");
+        myRef2.child(currentuser.getUid()).child(postingID).child("status").setValue("OnGoing");
         myRef2.child(currentuser.getUid()).child(postingID).child("tutor_id").setValue(tutorID);
         myRef2.child(currentuser.getUid()).child(postingID).child("tutor_name").setValue(tutorName);
 

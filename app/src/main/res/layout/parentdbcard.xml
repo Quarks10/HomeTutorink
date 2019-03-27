@@ -14,34 +14,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/dashCardNameTxt"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/dashCardNameTxt"
-                    android:layout_width="238dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Syahir"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_unsub"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.5"
-                    android:background="@android:color/holo_red_dark"
-                    android:text="Unsubscribe" />
-            </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Syahir"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/dashCardTutorTxt"
-                android:layout_width="125dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Tutor: Pn. Aliza"

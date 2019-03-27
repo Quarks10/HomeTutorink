@@ -24,18 +24,19 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ParentHistoryPost extends AppCompatActivity {
+public class ParentHistoryPostClosed extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     ImageButton btnHomePage;
-    Button btnClassEnd;
+    Button btnClassOnGoing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parent_history_post);
+        setContentView(R.layout.activity_parent_history_closed);
+
         btnHomePage = findViewById(R.id.homebtn);
-        btnClassEnd = findViewById(R.id.endedbtn);
+        btnClassOnGoing = findViewById(R.id.ongoingbtn);
 
         btnHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +46,10 @@ public class ParentHistoryPost extends AppCompatActivity {
             }
         });
 
-        btnClassEnd.setOnClickListener(new View.OnClickListener() {
+        btnClassOnGoing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toEndedClass = new Intent(ParentHistoryPost.this, ParentHistoryPostClosed.class);
+                Intent toEndedClass = new Intent(ParentHistoryPostClosed.this,ParentHistoryPost.class);
                 startActivity(toEndedClass);
             }
         });
@@ -56,6 +57,7 @@ public class ParentHistoryPost extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         getPostedJob();
+
     }
 
     private void getPostedJob(){
@@ -71,37 +73,37 @@ public class ParentHistoryPost extends AppCompatActivity {
 
                 for(DataSnapshot jobSnapshot : dataSnapshot.getChildren()){
 
-                        String jobstatus = jobSnapshot.child("status").getValue().toString();
-                        if (jobstatus.equals("OnGoing"))
-                        {
-                            String jobpostid = jobSnapshot.child("post_id").getValue().toString();
-                            String jobchildid = jobSnapshot.child("child_id").getValue().toString();
-                            String jobchildname = jobSnapshot.child("child_name").getValue().toString();
-                            String jobedulevel = jobSnapshot.child("edu_level").getValue().toString();
-                            String joblevel = jobSnapshot.child("level").getValue().toString();
-                            String jobsubject = jobSnapshot.child("subject").getValue().toString();
-                            String joblocation = jobSnapshot.child("location").getValue().toString();
-                            String jobdate = jobSnapshot.child("date").getValue().toString();
-                            String tutor_name = jobSnapshot.child("tutor_name").getValue().toString();
+                    String jobstatus = jobSnapshot.child("status").getValue().toString();
+                    if (jobstatus.equals("Ended"))
+                    {
+                        String jobpostid = jobSnapshot.child("post_id").getValue().toString();
+                        String jobchildid = jobSnapshot.child("child_id").getValue().toString();
+                        String jobchildname = jobSnapshot.child("child_name").getValue().toString();
+                        String jobedulevel = jobSnapshot.child("edu_level").getValue().toString();
+                        String joblevel = jobSnapshot.child("level").getValue().toString();
+                        String jobsubject = jobSnapshot.child("subject").getValue().toString();
+                        String joblocation = jobSnapshot.child("location").getValue().toString();
+                        String jobdate = jobSnapshot.child("date").getValue().toString();
+                        String tutor_name = jobSnapshot.child("tutor_name").getValue().toString();
 
-                            ArrayList<SessionData> jobsessionData = new ArrayList<>();
-                            Iterable<DataSnapshot> snapshotIterator = jobSnapshot.child("session").getChildren();
-                            Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+                        ArrayList<SessionData> jobsessionData = new ArrayList<>();
+                        Iterable<DataSnapshot> snapshotIterator = jobSnapshot.child("session").getChildren();
+                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
-                            while (iterator.hasNext()) {
-                                DataSnapshot next = (DataSnapshot) iterator.next();
-                                String day = next.child("day").getValue().toString();
-                                String st = next.child("start_time").getValue().toString();
-                                String et = next.child("end_time").getValue().toString();
-                                jobsessionData.add(new SessionData(day,st,et));
-                            }
-
-
-                            JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
-
-
-                            generateAvailableJobList(tutor_name, jobPosting);
+                        while (iterator.hasNext()) {
+                            DataSnapshot next = (DataSnapshot) iterator.next();
+                            String day = next.child("day").getValue().toString();
+                            String st = next.child("start_time").getValue().toString();
+                            String et = next.child("end_time").getValue().toString();
+                            jobsessionData.add(new SessionData(day,st,et));
                         }
+
+
+                        JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
+
+
+                        generateAvailableJobList(tutor_name, jobPosting);
+                    }
 
                 }
 
@@ -142,20 +144,11 @@ public class ParentHistoryPost extends AppCompatActivity {
 
     public void generateAvailableJobList(String tutorName, final JobPosting jobPosting) {
 
-        LinearLayout mainLayout = findViewById(R.id.postHistoryOngoingLayout);
+        LinearLayout mainLayout = findViewById(R.id.postHistoryEndedLayout);
 
         LayoutInflater inflater = getLayoutInflater();
-        View myLayout = inflater.inflate(R.layout.posthistcard, mainLayout, false);
+        View myLayout = inflater.inflate(R.layout.posthistcard2, mainLayout, false);
 
-
-        Button unsubbtn = myLayout.findViewById(R.id.unsubsClassbtn);
-        unsubbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showMessage("Class Ended");
-               // ApplyJob(jobPosting.getPostID());
-            }
-        });
 
         TextView childname = myLayout.findViewById(R.id.dashCardNameTxt);
         childname.setText(jobPosting.getChildName());
@@ -178,6 +171,5 @@ public class ParentHistoryPost extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
 
     }
-
 
 }

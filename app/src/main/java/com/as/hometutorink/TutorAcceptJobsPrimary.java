@@ -148,7 +148,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
 
 
-                    if(ds.child("status").getValue().equals("Accepted")){
+                    if(ds.child("status").getValue().equals("OnGoing")){
 
                         String parentname = currparent.getFirst_name() + " " + currparent.getLast_name();
                         String childname = ds.child("child_name").getValue().toString();

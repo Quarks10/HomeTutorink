@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".posthistoryclosed"></activity>
+        <activity android:name=".ParentHistoryPostClosed"></activity>
         <activity android:name=".ParentHistoryPost" />
         <activity android:name=".TutorIncomeEarned" />
         <activity android:name=".ParentPayment" />

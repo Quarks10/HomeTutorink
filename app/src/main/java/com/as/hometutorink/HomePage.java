@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePage extends AppCompatActivity {
 
-    Button dashboard, hire_tutor, tutor_request, messages, children, payment, logout;
+    Button dashboard, hire_tutor, tutor_request, job_history, messages, children, payment, logout;
     FirebaseAuth mAuth;
 
     @Override
@@ -22,6 +22,7 @@ public class HomePage extends AppCompatActivity {
         dashboard = findViewById(R.id.dashboard_sidebar);
         hire_tutor = findViewById(R.id.hiretutor_sidebar);
         tutor_request = findViewById(R.id.tutorreq_sidebar);
+        job_history = findViewById(R.id.posthistory_sidebar);
         messages = findViewById(R.id.message_sidebar);
         children = findViewById(R.id.children_sidebar);
         payment = findViewById(R.id.payment_sidebar);
@@ -50,6 +51,14 @@ public class HomePage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toTutorRequest = new Intent(HomePage.this,TutorRequestOpen.class);
                 startActivity(toTutorRequest);
+            }
+        });
+
+        job_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toParentHistory = new Intent(HomePage.this,ParentHistoryPost.class);
+                startActivity(toParentHistory);
             }
         });
 

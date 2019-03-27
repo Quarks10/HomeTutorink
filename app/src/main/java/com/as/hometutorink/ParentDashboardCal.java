@@ -63,7 +63,6 @@ public class ParentDashboardCal extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
-
                 Date c = Calendar.getInstance().getTime();
                 System.out.println("Current time => " + c);
 
@@ -113,7 +112,7 @@ public class ParentDashboardCal extends AppCompatActivity {
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
 
 
-                    if(ds.child("status").getValue().equals("Accepted")){
+                    if(ds.child("status").getValue().equals("OnGoing")){
 
                         String childname = ds.child("child_name").getValue().toString();
                         String tutorname = ds.child("tutor_name").getValue().toString();
@@ -146,16 +145,6 @@ public class ParentDashboardCal extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View myLayout = inflater.inflate(R.layout.parentdbcard, mainLayout, false);
 
-
-
-        Button unsubscribebtn = myLayout.findViewById(R.id.btn_unsub);
-        unsubscribebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // AcceptJob(postID, tutorKey, tutorApplications);
-                showMessage("unsubscribe");
-            }
-        });
 
         /*
 
