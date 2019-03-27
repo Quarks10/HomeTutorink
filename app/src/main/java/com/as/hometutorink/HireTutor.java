@@ -222,17 +222,26 @@ public class HireTutor extends AppCompatActivity {
 
                 if(curr_sessions.equals("1")){
                     session1.setVisibility(View.VISIBLE);
+                    session2.setVisibility(View.GONE);
+                    session3.setVisibility(View.GONE);
+                    session4.setVisibility(View.GONE);
+                    session5.setVisibility(View.GONE);
                 }
 
                 if(curr_sessions.equals("2")){
                     session1.setVisibility(View.VISIBLE);
                     session2.setVisibility(View.VISIBLE);
+                    session3.setVisibility(View.GONE);
+                    session4.setVisibility(View.GONE);
+                    session5.setVisibility(View.GONE);
                 }
 
                 if(curr_sessions.equals("3")){
                     session1.setVisibility(View.VISIBLE);
                     session2.setVisibility(View.VISIBLE);
                     session3.setVisibility(View.VISIBLE);
+                    session4.setVisibility(View.GONE);
+                    session5.setVisibility(View.GONE);
                 }
 
                 if(curr_sessions.equals("4")){
@@ -240,6 +249,7 @@ public class HireTutor extends AppCompatActivity {
                     session2.setVisibility(View.VISIBLE);
                     session3.setVisibility(View.VISIBLE);
                     session4.setVisibility(View.VISIBLE);
+                    session5.setVisibility(View.GONE);
                 }
 
                 if(curr_sessions.equals("5")){
@@ -485,7 +495,7 @@ public class HireTutor extends AppCompatActivity {
         job_details.put("subject", subject);
         job_details.put("location", location);
         job_details.put("date", date);
-        job_details.put("status", "true");
+        job_details.put("status", "Pending");
 
         myRef.child(currentUser.getUid()).child(postingID).setValue(job_details);
 

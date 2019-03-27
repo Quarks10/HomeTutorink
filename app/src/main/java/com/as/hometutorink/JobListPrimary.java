@@ -89,7 +89,7 @@ public class JobListPrimary extends AppCompatActivity {
         DatabaseReference refChildren = FirebaseDatabase.getInstance()
                 .getReference("jobposting");
 
-        refChildren.addValueEventListener(new ValueEventListener() {
+        refChildren.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -123,7 +123,7 @@ public class JobListPrimary extends AppCompatActivity {
 
                         JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
 
-                        if (jobPosting.getStatus().equals("true") && jobPosting.getEduLevel().equals("Primary School"))
+                        if (jobPosting.getStatus().equals("Pending") && jobPosting.getEduLevel().equals("Primary School"))
                         {
                             listjob.add(jobPosting);
                             parentskey.add(parentsKey.getKey());
@@ -161,7 +161,7 @@ public class JobListPrimary extends AppCompatActivity {
                     String parentName = dataSnapshot.child("first_name").getValue().toString() + " " + dataSnapshot.child("last_name").getValue().toString();
                     String parentAddress = dataSnapshot.child("address").getValue().toString();
 
-                if (jobPosting.getStatus().equals("true")) {
+                if (jobPosting.getStatus().equals("Pending")) {
                     generateAvailableJobList(parentName, parentAddress, jobPosting);
                 }
 

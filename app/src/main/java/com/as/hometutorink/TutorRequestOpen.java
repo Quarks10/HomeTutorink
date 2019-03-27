@@ -103,7 +103,7 @@ public class TutorRequestOpen extends AppCompatActivity {
 
                     JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
 
-                    if (jobPosting.getStatus().equals("true"))
+                    if (jobPosting.getStatus().equals("Pending"))
                    {
                         generateParentJobList(jobPosting);
                     }
