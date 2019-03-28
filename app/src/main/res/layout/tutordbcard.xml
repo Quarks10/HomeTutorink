@@ -40,10 +40,18 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/dashCardDayTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Day: Monday, 12/09/19"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
                 android:id="@+id/dashCardTimeTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="When: 12/09/19, 8.00pm"
+                android:text="Time: 8.00pm - 10.00pm"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
