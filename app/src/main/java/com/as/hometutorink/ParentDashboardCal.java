@@ -82,12 +82,12 @@ public class ParentDashboardCal extends AppCompatActivity {
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, dayOfMonth);
-                int dayOfWeek = calendar.get(Calendar.SUNDAY);
-
+//                int dayOfWeek = calendar.get(Calendar.SUNDAY);
                // DOW.setText(Integer.toString(dayOfWeek));
                 DOW.setText(formattedDate);
 
-                Log.d(TAG, "onSelectedDayChange: " + dayOfWeek);
+               // Log.d(TAG, "onSelectedDayChange: " + dayOfWeek);
+                Log.d(TAG, "onSelectedDayChange: " + formattedDate);
 
             }
         });
