@@ -3,6 +3,7 @@ package com.as.hometutorink;
 import java.util.ArrayList;
 
 class TutorData {
+    String tutor_id;
     String first_name;
     String last_name;
     String address;
@@ -15,7 +16,8 @@ class TutorData {
 
     }
 
-    public TutorData(String first_name, String last_name, String address, String job_title, String job_desc, ArrayList<String> qualifications, ArrayList<String> subjects) {
+    public TutorData(String tutor_id, String first_name, String last_name, String address, String job_title, String job_desc, ArrayList<String> qualifications, ArrayList<String> subjects) {
+        this.tutor_id = tutor_id;
         this.first_name = first_name;
         this.last_name = last_name;
         this.address = address;
@@ -23,6 +25,14 @@ class TutorData {
         this.job_desc = job_desc;
         this.qualifications = qualifications;
         this.subjects = subjects;
+    }
+
+    public String getTutor_id() {
+        return tutor_id;
+    }
+
+    public void setTutor_id(String tutor_id) {
+        this.tutor_id = tutor_id;
     }
 
     public String getFirst_name() {

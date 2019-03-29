@@ -81,6 +81,7 @@ public class TutorRequestViewApp extends AppCompatActivity {
 
                 for (DataSnapshot value: dataSnapshot.getChildren()) {
 
+                    String tutorID = value.getKey();
                     Boolean subject_qualified = false;
                     ArrayList<String> list_qualifications = new ArrayList<String>();
                     ArrayList<String> list_subjects = new ArrayList<String>();
@@ -111,7 +112,7 @@ public class TutorRequestViewApp extends AppCompatActivity {
                         list_subjects.add(subject);
                     }
 
-                    TutorData tutorData = new TutorData(tutorFN,tutorLN,address,job_title,job_desc,list_qualifications,list_subjects);
+                    TutorData tutorData = new TutorData(tutorID,tutorFN,tutorLN,address,job_title,job_desc,list_qualifications,list_subjects);
 
                     if(subject_qualified){
                         generateApplicationTutorList(tutorData);
@@ -129,7 +130,7 @@ public class TutorRequestViewApp extends AppCompatActivity {
         });
     }
 
-    private void generateApplicationTutorList(TutorData tutorData) {
+    private void generateApplicationTutorList(final TutorData tutorData) {
 
         final String postID = getIntent().getStringExtra("post_id");
         LinearLayout mainLayout = findViewById(R.id.jobPostedRecll);
@@ -142,8 +143,8 @@ public class TutorRequestViewApp extends AppCompatActivity {
         applybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-             //   HireTutorRecommendation();
-               // AcceptJob(postID, tutorKey, tutorName, tutorApplications);
+                HireTutorRecommendation(postID,tutorData.getTutor_id());
+                showMessage("Successfully Applied");
             }
         });
 
@@ -180,39 +181,13 @@ public class TutorRequestViewApp extends AppCompatActivity {
 
     }
 
-    public void HireTutorRecommendation(String postingID, String tutorID, String tutorName, ArrayList<TutorApplication> tutorApplications){
-
-        FirebaseUser currentuser = mAuth.getCurrentUser();
+    public void HireTutorRecommendation(String postingID, String tutorID){
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("jobapply");
+        DatabaseReference myRef = database.getReference("jobapplyparent");
 
-        for (TutorApplication tp: tutorApplications) {
-
-
-            if(tp.tutorKey.equals(tutorID)){
-                myRef.child(postingID).child(tutorID).child("status").setValue("Approve");
-            }else{
-                myRef.child(postingID).child(tp.getTutorKey()).child("status").setValue("Rejected");
-            }
-
-        }
-
-        FirebaseDatabase database2 = FirebaseDatabase.getInstance();
-        DatabaseReference myRef2 = database2.getReference("jobposting");
-
-        myRef2.child(currentuser.getUid()).child(postingID).child("status").setValue("Accepted");
-        myRef2.child(currentuser.getUid()).child(postingID).child("tutor_id").setValue(tutorID);
-        myRef2.child(currentuser.getUid()).child(postingID).child("tutor_name").setValue(tutorName);
-
-        FirebaseDatabase database3 = FirebaseDatabase.getInstance();
-        DatabaseReference myRef3 = database2.getReference("jobaccepted");
-
-        myRef3.child(tutorID).child(postingID).child("status").setValue("OnGoing");
-        myRef3.child(tutorID).child(postingID).child("parent_id").setValue(currentuser.getUid());
-
-        Intent toDashboard = new Intent(TutorRequestViewApp.this, ParentDashboardCal.class);
-        startActivity(toDashboard);
+        myRef.child(postingID).child("tutor_apply").child(tutorID).child("tutor").setValue(tutorID);
+        myRef.child(postingID).child("status").setValue("Apply");
 
     }
 
@@ -305,8 +280,10 @@ public class TutorRequestViewApp extends AppCompatActivity {
         FirebaseDatabase database3 = FirebaseDatabase.getInstance();
         DatabaseReference myRef3 = database2.getReference("jobaccepted");
 
+        String pushID = FirebaseDatabase.getInstance().getReference().child("jobaccepted").push().getKey();
         myRef3.child(tutorID).child(postingID).child("status").setValue("OnGoing");
         myRef3.child(tutorID).child(postingID).child("parent_id").setValue(currentuser.getUid());
+        myRef3.child(tutorID).child(postingID).child("post_id").setValue(postingID);
 
         Intent toDashboard = new Intent(TutorRequestViewApp.this, ParentDashboardCal.class);
         startActivity(toDashboard);
