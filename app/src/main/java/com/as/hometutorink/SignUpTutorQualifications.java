@@ -90,13 +90,10 @@ public class SignUpTutorQualifications extends AppCompatActivity {
 
     public void init_chkbox_qualification()
     {
-        chk1_qualifications = findViewById(R.id.spmcb);
-        chk2_qualifications = findViewById(R.id.stpmcb);
-        chk3_qualifications = findViewById(R.id.foundycb);
-        chk4_qualifications = findViewById(R.id.matrixcb);
-        chk5_qualifications = findViewById(R.id.degreecb);
-        chk6_qualifications = findViewById(R.id.mastercb);
-        chk7_qualifications = findViewById(R.id.phdcb);
+        chk1_qualifications = findViewById(R.id.diplomacb);
+        chk2_qualifications = findViewById(R.id.degreecb);
+        chk3_qualifications = findViewById(R.id.mastercb);
+        chk4_qualifications = findViewById(R.id.phdcb);
     }
 
     public void init_chkbox_subjects()
@@ -128,15 +125,6 @@ public class SignUpTutorQualifications extends AppCompatActivity {
         }
         if(chk4_qualifications.isChecked()){
             checked.add(chk4_qualifications.getText().toString());
-        }
-        if(chk5_qualifications.isChecked()){
-            checked.add(chk5_qualifications.getText().toString());
-        }
-        if(chk6_qualifications.isChecked()){
-            checked.add(chk6_qualifications.getText().toString());
-        }
-        if(chk7_qualifications.isChecked()){
-            checked.add(chk7_qualifications.getText().toString());
         }
 
         return checked;

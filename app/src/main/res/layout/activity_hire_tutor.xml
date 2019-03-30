@@ -160,14 +160,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Sejarah" />
+                        android:text="History" />
 
                     <RadioButton
                         android:id="@+id/georb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Geography" />
+                        android:text="Accounting" />
 
                 </RadioGroup>
 

@@ -84,7 +84,7 @@ public class TutorDashboardCal extends AppCompatActivity {
         final ArrayList<String> ongoingjob = new ArrayList<String>();
         final ArrayList<String> parentkey = new ArrayList<String>();
         DatabaseReference refParents = FirebaseDatabase.getInstance().getReference("jobaccepted");
-        refParents.child(curruser.getUid()).addValueEventListener(new ValueEventListener() {
+        refParents.child(curruser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -158,7 +158,7 @@ public class TutorDashboardCal extends AppCompatActivity {
                         String location = ds.child("location").getValue().toString();
                         String address = currparent.getAddress();
                         String subject = ds.child("subject").getValue().toString();
-                        String datetime = ds.child("date").getValue().toString() + " " + ds.child("time").getValue().toString();
+                        String datetime = ds.child("date").getValue().toString();
 
                         generateDashboardList(childname,childlevel,childedulevel,location,address,subject,datetime);
                     }

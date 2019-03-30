@@ -183,11 +183,13 @@ public class TutorRequestViewApp extends AppCompatActivity {
 
     public void HireTutorRecommendation(String postingID, String tutorID){
 
+        String userID = mAuth.getUid();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("jobapplyparent");
 
         myRef.child(postingID).child("tutor_apply").child(tutorID).child("tutor").setValue(tutorID);
         myRef.child(postingID).child("status").setValue("Apply");
+        myRef.child(postingID).child("parent_id").setValue(userID);
 
     }
 
@@ -278,7 +280,7 @@ public class TutorRequestViewApp extends AppCompatActivity {
         myRef2.child(currentuser.getUid()).child(postingID).child("tutor_name").setValue(tutorName);
 
         FirebaseDatabase database3 = FirebaseDatabase.getInstance();
-        DatabaseReference myRef3 = database2.getReference("jobaccepted");
+        DatabaseReference myRef3 = database3.getReference("jobaccepted");
 
         String pushID = FirebaseDatabase.getInstance().getReference().child("jobaccepted").push().getKey();
         myRef3.child(tutorID).child(postingID).child("status").setValue("OnGoing");
