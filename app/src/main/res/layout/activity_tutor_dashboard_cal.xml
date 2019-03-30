@@ -51,7 +51,7 @@
             android:orientation="vertical">
 
             <CalendarView
-                android:id="@+id/calendarView"
+                android:id="@+id/calendarViewTutor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="visible" />
@@ -91,7 +91,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/monCardLayout"
+                    android:id="@+id/monCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -101,7 +101,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
-                        android:visibility="visible">
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -165,7 +165,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/tuesCardLayout"
+                    android:id="@+id/tuesCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -182,7 +182,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/wedCardLayout"
+                    android:id="@+id/wedCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -199,7 +199,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/thursCardLayout"
+                    android:id="@+id/thursCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -216,7 +216,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/friCardLayout"
+                    android:id="@+id/friCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -233,7 +233,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/satCardLayout"
+                    android:id="@+id/satCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
@@ -250,7 +250,7 @@
                     android:textStyle="bold" />
 
                 <LinearLayout
-                    android:id="@+id/sunCardLayout"
+                    android:id="@+id/sunCardLayoutT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />

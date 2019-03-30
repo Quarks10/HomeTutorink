@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,12 +20,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
 
 public class TutorDashboardCal extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     ImageButton btnHomePage;
+    CalendarView cv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,40 +50,161 @@ public class TutorDashboardCal extends AppCompatActivity {
         init();
     }
 
-
     public void init() {
-        //generateDashBoard();
+        CalendarController();
+    }
 
-        readData(new FirebaseCallbackTutorDashboard() {
+    private void CalendarController(){
+        cv = findViewById(R.id.calendarViewTutor);
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
-            public void onCallBack(final ArrayList<String> onGoingJob, final ArrayList<String> parentKey) {
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
-                getParentsData(new TutorAcceptJobsPrimary.FirebaseCallbackAcceptJob() {
+                EnableEmptyLayout();
+                removeAllViewsInDaysLayout();
+                final ArrayList<DateData> listDateData = getListDateData(year,month,dayOfMonth);
+               // generateDashBoard(listDateData);
+
+                readData(new FirebaseCallbackTutorDashboard() {
                     @Override
-                    public void onCallBack(ArrayList<Parent> parent) {
+                    public void onCallBack(final ArrayList<String> onGoingJob, final ArrayList<String> parentKey) {
 
-                        for (int i = 0; i<onGoingJob.size(); i++){
+                        getParentsData(new TutorAcceptJobsPrimary.FirebaseCallbackAcceptJob() {
+                            @Override
+                            public void onCallBack(ArrayList<Parent> parent) {
 
-                            Parent currparent = new Parent();
+                                for (int i = 0; i<onGoingJob.size(); i++){
 
-                            for (Parent tmp: parent) {
-                                if(tmp.getParentID().equals(parentKey.get(i))){
-                                    currparent = tmp;
+                                    Parent currparent = new Parent();
+
+                                    for (Parent tmp: parent) {
+                                        if(tmp.getParentID().equals(parentKey.get(i))){
+                                            currparent = tmp;
+                                        }
+                                    }
+                                    generateDashBoard(onGoingJob.get(i), parentKey.get(i),currparent, listDateData);
                                 }
                             }
-                            generateDashBoard(onGoingJob.get(i), parentKey.get(i),currparent);
-                        }
+                        });
                     }
                 });
-
-
-
-
             }
-
         });
+    }
+
+    private void removeAllViewsInDaysLayout(){
+        LinearLayout monday = findViewById(R.id.monCardLayoutT);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayoutT);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayoutT);
+        LinearLayout thursday = findViewById(R.id.thursCardLayoutT);
+        LinearLayout friday = findViewById(R.id.friCardLayoutT);
+        LinearLayout saturday = findViewById(R.id.satCardLayoutT);
+        LinearLayout sunday = findViewById(R.id.sunCardLayoutT);
+        monday.removeAllViews();
+        tuesday.removeAllViews();
+        wednesday.removeAllViews();
+        thursday.removeAllViews();
+        friday.removeAllViews();
+        saturday.removeAllViews();
+        sunday.removeAllViews();
+    }
+
+    private void EnableEmptyLayout() {
+
+        LinearLayout monday = findViewById(R.id.monCardLayoutT);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayoutT);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayoutT);
+        LinearLayout thursday = findViewById(R.id.thursCardLayoutT);
+        LinearLayout friday = findViewById(R.id.friCardLayoutT);
+        LinearLayout saturday = findViewById(R.id.satCardLayoutT);
+        LinearLayout sunday = findViewById(R.id.sunCardLayoutT);
+
+        TextView mondaytxt = findViewById(R.id.monTxt);
+        TextView tuesdaytxt = findViewById(R.id.tuesTxt);
+        TextView wednesdaytxt = findViewById(R.id.wedTxt);
+        TextView thursdaytxt = findViewById(R.id.thursTxt);
+        TextView fridaytxt = findViewById(R.id.friTxt);
+        TextView saturdaytxt = findViewById(R.id.satTxt);
+        TextView sundaytxt = findViewById(R.id.sunTxt);
+
+        if(monday.getChildCount() == 0){
+            monday.setVisibility(View.VISIBLE);
+            mondaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(tuesday.getChildCount() == 0){
+            tuesday.setVisibility(View.VISIBLE);
+            tuesdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(wednesday.getChildCount() == 0){
+            wednesday.setVisibility(View.VISIBLE);
+            wednesdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(thursday.getChildCount() == 0){
+            thursday.setVisibility(View.VISIBLE);
+            thursdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(friday.getChildCount() == 0){
+            friday.setVisibility(View.VISIBLE);
+            fridaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(saturday.getChildCount() == 0){
+            saturday.setVisibility(View.VISIBLE);
+            saturdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(sunday.getChildCount() == 0){
+            sunday.setVisibility(View.VISIBLE);
+            sundaytxt.setVisibility(View.VISIBLE);
+        }
+
 
     }
+
+    private ArrayList<DateData> getListDateData(int year, int month, int dayOfMonth){
+
+        ArrayList<Calendar> list_calendar = new ArrayList<>();
+        ArrayList<Date> list_date = new ArrayList<>();
+        ArrayList<DateData> list_date_data = new ArrayList<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfday = new SimpleDateFormat("EEEE");
+        Calendar calendar = new GregorianCalendar( year, month, dayOfMonth );
+
+
+        for(int i = 0; i<7; i++){
+
+            if(i==0){
+                Date date = calendar.getTime();
+                list_date.add(date);
+            }else{
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+                Date date = calendar.getTime();
+                list_date.add(date);
+                list_calendar.add(calendar);
+            }
+
+        }
+
+        for (Date dates:list_date) {
+            Date date = dates;
+            String formattedDate = sdf.format(date);
+            String formattedDay = sdfday.format(dates);
+            DateData dateData = new DateData(date,formattedDate,formattedDay);
+            list_date_data.add(dateData);
+        }
+
+        return list_date_data;
+
+
+    }
+
+
+
 
     private void readData(final FirebaseCallbackTutorDashboard firebaseCallbackTutorDashboard){
 
@@ -138,7 +266,7 @@ public class TutorDashboardCal extends AppCompatActivity {
     }
 
 
-    public void generateDashBoard(String post_id, String parent_id, final Parent currparent){
+    public void generateDashBoard(String post_id, String parent_id, final Parent currparent, final ArrayList<DateData> dateData){
 
         DatabaseReference refposting = FirebaseDatabase.getInstance().getReference("jobposting");
         refposting.child(parent_id).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -160,25 +288,30 @@ public class TutorDashboardCal extends AppCompatActivity {
                         String subject = ds.child("subject").getValue().toString();
                         String datetime = ds.child("date").getValue().toString();
 
-                        generateDashboardList(childname,childlevel,childedulevel,location,address,subject,datetime);
-                    }
+                        ArrayList<SessionData> jobsessionData = new ArrayList<>();
+                        Iterable<DataSnapshot> snapshotIterator = ds.child("session").getChildren();
+                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
-                    /*
-                    readData(new FirebaseCallbackTutorDashboard() {
-                        @Override
-                        public void onCallBack(ArrayList<String> onGoingJob, ArrayList<String> parentKey) {
-
-                            for (int i = 0; i<onGoingJob.size(); i++){
-                                generateDashBoard(onGoingJob.get(i), parentKey.get(i));
-                            }
-
+                        while (iterator.hasNext()) {
+                            DataSnapshot next = (DataSnapshot) iterator.next();
+                            String day = next.child("day").getValue().toString();
+                            String st = next.child("start_time").getValue().toString();
+                            String et = next.child("end_time").getValue().toString();
+                            jobsessionData.add(new SessionData(day,st,et));
                         }
 
-                    });
-                    */
+                        for (DateData dd:dateData) {
 
+                            for (SessionData sd:jobsessionData) {
+
+                                if(sd.getDay().equals(dd.getDay())){
+                                    generateDashboardList(childname,childlevel,childedulevel,location,address,subject,datetime,dd,sd);
+                                }
+                            }
+                        }
+                    }
                 }
-
+                DisableEmptyLayout();
             }
 
             @Override
@@ -188,36 +321,99 @@ public class TutorDashboardCal extends AppCompatActivity {
         });
     }
 
+    private void DisableEmptyLayout() {
 
-    public void generateDashboardList(String childname, String childlevel, String childedulevel, String location, String address, String subject, String datetime) {
+        LinearLayout monday = findViewById(R.id.monCardLayoutT);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayoutT);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayoutT);
+        LinearLayout thursday = findViewById(R.id.thursCardLayoutT);
+        LinearLayout friday = findViewById(R.id.friCardLayoutT);
+        LinearLayout saturday = findViewById(R.id.satCardLayoutT);
+        LinearLayout sunday = findViewById(R.id.sunCardLayoutT);
 
-        LinearLayout mainLayout = findViewById(R.id.Tutordbll);
+        TextView mondaytxt = findViewById(R.id.monTxt);
+        TextView tuesdaytxt = findViewById(R.id.tuesTxt);
+        TextView wednesdaytxt = findViewById(R.id.wedTxt);
+        TextView thursdaytxt = findViewById(R.id.thursTxt);
+        TextView fridaytxt = findViewById(R.id.friTxt);
+        TextView saturdaytxt = findViewById(R.id.satTxt);
+        TextView sundaytxt = findViewById(R.id.sunTxt);
+
+        if (monday.getChildCount() == 0) {
+            monday.setVisibility(View.GONE);
+            mondaytxt.setVisibility(View.GONE);
+        }
+
+        if (tuesday.getChildCount() == 0) {
+            tuesday.setVisibility(View.GONE);
+            tuesdaytxt.setVisibility(View.GONE);
+        }
+
+        if (wednesday.getChildCount() == 0) {
+            wednesday.setVisibility(View.GONE);
+            wednesdaytxt.setVisibility(View.GONE);
+        }
+
+        if (thursday.getChildCount() == 0) {
+            thursday.setVisibility(View.GONE);
+            thursdaytxt.setVisibility(View.GONE);
+        }
+
+        if (friday.getChildCount() == 0) {
+            friday.setVisibility(View.GONE);
+            fridaytxt.setVisibility(View.GONE);
+        }
+
+        if (saturday.getChildCount() == 0) {
+            saturday.setVisibility(View.GONE);
+            saturdaytxt.setVisibility(View.GONE);
+        }
+
+        if (sunday.getChildCount() == 0) {
+            sunday.setVisibility(View.GONE);
+            sundaytxt.setVisibility(View.GONE);
+        }
+
+    }
+
+    public void generateDashboardList(String childname, String childlevel, String childedulevel, String location, String address, String subject, String datetime,DateData dateData, SessionData sd) {
+
+       // LinearLayout mainLayout = findViewById(R.id.Tutordbll);
+        LinearLayout mainLayout = findViewById(R.id.monCardLayoutT);
+
+
+        if(dateData.getDay().equals("Monday")){
+            mainLayout = findViewById(R.id.monCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Tuesday")){
+            mainLayout = findViewById(R.id.tuesCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Wednesday")){
+            mainLayout = findViewById(R.id.wedCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Thursday")){
+            mainLayout = findViewById(R.id.thursCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Friday")){
+            mainLayout = findViewById(R.id.friCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Saturday")){
+            mainLayout = findViewById(R.id.satCardLayoutT);
+        }
+
+        if(dateData.getDay().equals("Sunday")){
+            mainLayout = findViewById(R.id.sunCardLayoutT);
+        }
 
         LayoutInflater inflater = getLayoutInflater();
         View myLayout = inflater.inflate(R.layout.tutordbcard, mainLayout, false);
 
 
-        /*
-        Button applybtn = myLayout.findViewById(R.id.hirebtn);
-        applybtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AcceptJob(postID, tutorKey, tutorApplications);
-            }
-        });
-*/
-        /*
-
-        CardView cv = myLayout.findViewById(R.id.parentRequestCard);
-
-        cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toTutorViewApp = new Intent(TutorRequestOpen.this, TutorRequestViewApp.class);
-                startActivity(toTutorViewApp);
-            }
-        });
-*/
         TextView childName = myLayout.findViewById(R.id.dashCardNameTxt);
         childName.setText(childname);
 
@@ -231,8 +427,11 @@ public class TutorDashboardCal extends AppCompatActivity {
         TextView subject_text = myLayout.findViewById(R.id.dashCardSubjectTxt);
         subject_text.setText("Subject: " + subject);
 
-        TextView dateTime = myLayout.findViewById(R.id.dashCardTimeTxt);
-        dateTime.setText("DateTime: " + datetime);
+        TextView Date = myLayout.findViewById(R.id.dashCardDayTxt);
+        Date.setText("Day: " + dateData.getDay() + ", " + dateData.getSdate());
+
+        TextView Time = myLayout.findViewById(R.id.dashCardTimeTxt);
+        Time.setText("Time: " + sd.getStart_time() + " - " + sd.getEnd_time());
 
         TextView locationName = myLayout.findViewById(R.id.dashCardLocTxt);
         if(location.equals("In my location")){

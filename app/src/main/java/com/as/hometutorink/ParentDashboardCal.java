@@ -54,11 +54,6 @@ public class ParentDashboardCal extends AppCompatActivity {
 
         DOW = findViewById(R.id.text_dow);
         init();
-
-
-
-
-
     }
 
 
@@ -72,14 +67,86 @@ public class ParentDashboardCal extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
-                LinearLayout mainLayout = findViewById(R.id.dashboardParentll);
-                mainLayout.removeAllViews();
-
+                EnableEmptyLayout();
+                removeAllViewsInDaysLayout();
                 ArrayList<DateData> listDateData = getListDateData(year,month,dayOfMonth);
                 generateDashBoard(listDateData);
 
             }
         });
+    }
+
+    private void removeAllViewsInDaysLayout(){
+        LinearLayout monday = findViewById(R.id.mondayCardLayout);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayout);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayout);
+        LinearLayout thursday = findViewById(R.id.thursCardLayout);
+        LinearLayout friday = findViewById(R.id.friCardLayout);
+        LinearLayout saturday = findViewById(R.id.satCardLayout);
+        LinearLayout sunday = findViewById(R.id.sunCardLayout);
+         monday.removeAllViews();
+         tuesday.removeAllViews();
+         wednesday.removeAllViews();
+         thursday.removeAllViews();
+         friday.removeAllViews();
+         saturday.removeAllViews();
+         sunday.removeAllViews();
+    }
+
+    private void EnableEmptyLayout() {
+
+        LinearLayout monday = findViewById(R.id.mondayCardLayout);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayout);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayout);
+        LinearLayout thursday = findViewById(R.id.thursCardLayout);
+        LinearLayout friday = findViewById(R.id.friCardLayout);
+        LinearLayout saturday = findViewById(R.id.satCardLayout);
+        LinearLayout sunday = findViewById(R.id.sunCardLayout);
+
+        TextView mondaytxt = findViewById(R.id.monTxtp);
+        TextView tuesdaytxt = findViewById(R.id.tuesTxtp);
+        TextView wednesdaytxt = findViewById(R.id.wedTxtp);
+        TextView thursdaytxt = findViewById(R.id.thurTxtp);
+        TextView fridaytxt = findViewById(R.id.friTxtp);
+        TextView saturdaytxt = findViewById(R.id.satTxtp);
+        TextView sundaytxt = findViewById(R.id.sunTxtp);
+
+        if(monday.getChildCount() == 0){
+            monday.setVisibility(View.VISIBLE);
+            mondaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(tuesday.getChildCount() == 0){
+            tuesday.setVisibility(View.VISIBLE);
+            tuesdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(wednesday.getChildCount() == 0){
+            wednesday.setVisibility(View.VISIBLE);
+            wednesdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(thursday.getChildCount() == 0){
+            thursday.setVisibility(View.VISIBLE);
+            thursdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(friday.getChildCount() == 0){
+            friday.setVisibility(View.VISIBLE);
+            fridaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(saturday.getChildCount() == 0){
+            saturday.setVisibility(View.VISIBLE);
+            saturdaytxt.setVisibility(View.VISIBLE);
+        }
+
+        if(sunday.getChildCount() == 0){
+            sunday.setVisibility(View.VISIBLE);
+            sundaytxt.setVisibility(View.VISIBLE);
+        }
+
+
     }
 
     private ArrayList<DateData> getListDateData(int year, int month, int dayOfMonth){
@@ -152,8 +219,6 @@ public class ParentDashboardCal extends AppCompatActivity {
                             jobsessionData.add(new SessionData(day,st,et));
                         }
 
-                        Log.d(TAG, "Size: " + Integer.toString(jobsessionData.size()));
-
 
                         for (DateData dd:listDateData) {
 
@@ -162,15 +227,12 @@ public class ParentDashboardCal extends AppCompatActivity {
                                 if(sd.getDay().equals(dd.getDay())){
                                     generateDashboardList(childname,tutorname,subject,startdate,dd,sd);
                                 }
-
                             }
-
                         }
-
                     }
-
-
                 }
+
+                DisableEmptyLayout();
 
             }
 
@@ -181,29 +243,104 @@ public class ParentDashboardCal extends AppCompatActivity {
         });
     }
 
+    private void DisableEmptyLayout() {
+
+        LinearLayout monday = findViewById(R.id.mondayCardLayout);
+        LinearLayout tuesday = findViewById(R.id.tuesCardLayout);
+        LinearLayout wednesday = findViewById(R.id.wedCardLayout);
+        LinearLayout thursday = findViewById(R.id.thursCardLayout);
+        LinearLayout friday = findViewById(R.id.friCardLayout);
+        LinearLayout saturday = findViewById(R.id.satCardLayout);
+        LinearLayout sunday = findViewById(R.id.sunCardLayout);
+
+        TextView mondaytxt = findViewById(R.id.monTxtp);
+        TextView tuesdaytxt = findViewById(R.id.tuesTxtp);
+        TextView wednesdaytxt = findViewById(R.id.wedTxtp);
+        TextView thursdaytxt = findViewById(R.id.thurTxtp);
+        TextView fridaytxt = findViewById(R.id.friTxtp);
+        TextView saturdaytxt = findViewById(R.id.satTxtp);
+        TextView sundaytxt = findViewById(R.id.sunTxtp);
+
+        if(monday.getChildCount() == 0){
+            monday.setVisibility(View.GONE);
+            mondaytxt.setVisibility(View.GONE);
+        }
+
+        if(tuesday.getChildCount() == 0){
+            tuesday.setVisibility(View.GONE);
+            tuesdaytxt.setVisibility(View.GONE);
+        }
+
+        if(wednesday.getChildCount() == 0){
+            wednesday.setVisibility(View.GONE);
+            wednesdaytxt.setVisibility(View.GONE);
+        }
+
+        if(thursday.getChildCount() == 0){
+            thursday.setVisibility(View.GONE);
+            thursdaytxt.setVisibility(View.GONE);
+        }
+
+        if(friday.getChildCount() == 0){
+            friday.setVisibility(View.GONE);
+            fridaytxt.setVisibility(View.GONE);
+        }
+
+        if(saturday.getChildCount() == 0){
+            saturday.setVisibility(View.GONE);
+            saturdaytxt.setVisibility(View.GONE);
+        }
+
+        if(sunday.getChildCount() == 0){
+            sunday.setVisibility(View.GONE);
+            sundaytxt.setVisibility(View.GONE);
+        }
+
+
+    }
+
 
     public void generateDashboardList(String childname, String tutorname, String subject, String startdate, DateData dateData, SessionData sessionData) {
 
 
         final String postID = getIntent().getStringExtra("post_id");
-        LinearLayout mainLayout = findViewById(R.id.dashboardParentll);
+
+        LinearLayout mainLayout = findViewById(R.id.mondayCardLayout);
+
+
+        if(dateData.getDay().equals("Monday")){
+            mainLayout = findViewById(R.id.mondayCardLayout);
+        }
+
+        if(dateData.getDay().equals("Tuesday")){
+            mainLayout = findViewById(R.id.tuesCardLayout);
+        }
+
+        if(dateData.getDay().equals("Wednesday")){
+            mainLayout = findViewById(R.id.wedCardLayout);
+        }
+
+        if(dateData.getDay().equals("Thursday")){
+            mainLayout = findViewById(R.id.thursCardLayout);
+        }
+
+        if(dateData.getDay().equals("Friday")){
+            mainLayout = findViewById(R.id.friCardLayout);
+        }
+
+        if(dateData.getDay().equals("Saturday")){
+            mainLayout = findViewById(R.id.satCardLayout);
+        }
+
+        if(dateData.getDay().equals("Sunday")){
+            mainLayout = findViewById(R.id.sunCardLayout);
+        }
+
 
         LayoutInflater inflater = getLayoutInflater();
         View myLayout = inflater.inflate(R.layout.parentdbcard, mainLayout, false);
 
 
-        /*
-
-        CardView cv = myLayout.findViewById(R.id.parentRequestCard);
-
-        cv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toTutorViewApp = new Intent(TutorRequestOpen.this, TutorRequestViewApp.class);
-                startActivity(toTutorViewApp);
-            }
-        });
-*/
         TextView childName = myLayout.findViewById(R.id.dashCardNameTxt);
         childName.setText(childname);
 
