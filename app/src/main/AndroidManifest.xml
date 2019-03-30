@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MessageContent"></activity>
+        <activity android:name=".JobHistoryEnded"></activity>
+        <activity android:name=".MessageContent" />
         <activity android:name=".HomeMessage" />
         <activity android:name=".ParentHistoryPostClosed" />
         <activity android:name=".ParentHistoryPost" />
