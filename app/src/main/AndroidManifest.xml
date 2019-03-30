@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JobHistoryEnded"></activity>
+        <activity android:name=".TutorJobAppPending"></activity>
+        <activity android:name=".TutorJobAppReject" />
+        <activity android:name=".JobHistoryEnded" />
         <activity android:name=".MessageContent" />
         <activity android:name=".HomeMessage" />
         <activity android:name=".ParentHistoryPostClosed" />
