@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -21,15 +20,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
-import java.util.TimeZone;
 
 public class ParentDashboardCal extends AppCompatActivity {
 
@@ -55,42 +51,11 @@ public class ParentDashboardCal extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        cv = findViewById(R.id.calendarViewParent);
+
         DOW = findViewById(R.id.text_dow);
         init();
 
-        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
-                Date c = Calendar.getInstance().getTime();
-                System.out.println("Current time => " + c);
-
-                SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
-                String formattedDate = df.format(c);
-               // System.out.println("Current time of the day using Date - 12 hour format: " + formattedDate);
-
-               // DateTime today = DateTime.today(TimeZone.getDefault());
-            //    DateTime firstDayThisWeek = today; //start value
-             //   int todaysWeekday = today.getWeekDay();
-              //  int SUNDAY = 1;
-             //   if(todaysWeekday > SUNDAY){
-                 //   int numDaysFromSunday = todaysWeekday - SUNDAY;
-               //     firstDayThisWeek = today.minusDays(numDaysFromSunday);
-
-
-
-                Calendar calendar = Calendar.getInstance();
-                calendar.set(year, month, dayOfMonth);
-//                int dayOfWeek = calendar.get(Calendar.SUNDAY);
-               // DOW.setText(Integer.toString(dayOfWeek));
-                DOW.setText(formattedDate);
-
-               // Log.d(TAG, "onSelectedDayChange: " + dayOfWeek);
-                Log.d(TAG, "onSelectedDayChange: " + formattedDate);
-
-            }
-        });
 
 
 
@@ -98,10 +63,65 @@ public class ParentDashboardCal extends AppCompatActivity {
 
 
     public void init() {
-        generateDashBoard();
+        CalendarController();
     }
 
-    public void generateDashBoard(){
+    private void CalendarController(){
+        cv = findViewById(R.id.calendarViewParent);
+        cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+
+                LinearLayout mainLayout = findViewById(R.id.dashboardParentll);
+                mainLayout.removeAllViews();
+
+                ArrayList<DateData> listDateData = getListDateData(year,month,dayOfMonth);
+                generateDashBoard(listDateData);
+
+            }
+        });
+    }
+
+    private ArrayList<DateData> getListDateData(int year, int month, int dayOfMonth){
+
+        ArrayList<Calendar> list_calendar = new ArrayList<>();
+        ArrayList<Date> list_date = new ArrayList<>();
+        ArrayList<DateData> list_date_data = new ArrayList<>();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfday = new SimpleDateFormat("EEEE");
+        Calendar calendar = new GregorianCalendar( year, month, dayOfMonth );
+
+
+        for(int i = 0; i<7; i++){
+
+            if(i==0){
+                Date date = calendar.getTime();
+                list_date.add(date);
+            }else{
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+                Date date = calendar.getTime();
+                list_date.add(date);
+                list_calendar.add(calendar);
+            }
+
+        }
+
+        for (Date dates:list_date) {
+            Date date = dates;
+            String formattedDate = sdf.format(date);
+            String formattedDay = sdfday.format(dates);
+            DateData dateData = new DateData(date,formattedDate,formattedDay);
+            list_date_data.add(dateData);
+        }
+
+        return list_date_data;
+
+
+    }
+
+
+    public void generateDashBoard(final ArrayList<DateData> listDateData){
 
         FirebaseUser currUser = mAuth.getCurrentUser();
         DatabaseReference refposting = FirebaseDatabase.getInstance().getReference("jobposting");
@@ -117,9 +137,35 @@ public class ParentDashboardCal extends AppCompatActivity {
                         String childname = ds.child("child_name").getValue().toString();
                         String tutorname = ds.child("tutor_name").getValue().toString();
                         String subject = ds.child("subject").getValue().toString();
-                        String datetime = ds.child("date").getValue().toString();
+                        String startdate = ds.child("date").getValue().toString();
 
-                        generateDashboardList(childname,tutorname,subject,datetime);
+
+                        ArrayList<SessionData> jobsessionData = new ArrayList<>();
+                        Iterable<DataSnapshot> snapshotIterator = ds.child("session").getChildren();
+                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
+
+                        while (iterator.hasNext()) {
+                            DataSnapshot next = (DataSnapshot) iterator.next();
+                            String day = next.child("day").getValue().toString();
+                            String st = next.child("start_time").getValue().toString();
+                            String et = next.child("end_time").getValue().toString();
+                            jobsessionData.add(new SessionData(day,st,et));
+                        }
+
+                        Log.d(TAG, "Size: " + Integer.toString(jobsessionData.size()));
+
+
+                        for (DateData dd:listDateData) {
+
+                            for (SessionData sd:jobsessionData) {
+
+                                if(sd.getDay().equals(dd.getDay())){
+                                    generateDashboardList(childname,tutorname,subject,startdate,dd,sd);
+                                }
+
+                            }
+
+                        }
 
                     }
 
@@ -136,7 +182,7 @@ public class ParentDashboardCal extends AppCompatActivity {
     }
 
 
-    public void generateDashboardList(String childname, String tutorname, String subject, String datetime) {
+    public void generateDashboardList(String childname, String tutorname, String subject, String startdate, DateData dateData, SessionData sessionData) {
 
 
         final String postID = getIntent().getStringExtra("post_id");
@@ -167,10 +213,11 @@ public class ParentDashboardCal extends AppCompatActivity {
         TextView subject_text = myLayout.findViewById(R.id.dashCardSubjectTxt);
         subject_text.setText("Subject: " + subject);
 
-        TextView dateTime = myLayout.findViewById(R.id.dashCardTimeTxt);
-        String testnewline = "Session 1: \nDay: Monday\nStart Time: 13:30\nEndTime: 14:30\n\nSession 2: \nDay: Monday\nStart Time: 13:30\nEndTime: 14:30";
-        //dateTime.setText(testnewline);
-        dateTime.setText("Date: " + datetime);
+        TextView dates = myLayout.findViewById(R.id.dashCardDayTxt);
+        dates.setText("Day: " + dateData.getDay() + ", " + dateData.getSdate());
+
+        TextView times = myLayout.findViewById(R.id.dashCardTimeTxt);
+        times.setText("Time: " + sessionData.getStart_time() + " - " + sessionData.getEnd_time());
 
         mainLayout.addView(myLayout);
 

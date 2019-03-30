@@ -116,25 +116,18 @@ public class ParentHistoryPost extends AppCompatActivity {
     }
 
 
-    public void ApplyJob(String postingID){
+    public void EndClass(String postingID){
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("jobapply");
-
-        // String applicationID = FirebaseDatabase.getInstance().getReference().child("jobapply").push().getKey();
+        DatabaseReference myRef = database.getReference("jobposting");
 
 
-        Map<String, String> application_details = new HashMap<String, String>();
-        application_details.put("status",  "Apply");
+        myRef.child(currentUser.getUid()).child(postingID).child("status").setValue("Ended");
 
-
-        myRef.child(postingID).child(currentUser.getUid()).setValue(application_details);
-
-        //Intent toDashboard = new Intent(JobListPrimary.this, TutorDashboardCal.class);
-        //  startActivity(toDashboard);
+        Intent toEndClass = new Intent(ParentHistoryPost.this, ParentHistoryPostClosed.class);
+        startActivity(toEndClass);
 
     }
 
@@ -153,7 +146,7 @@ public class ParentHistoryPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showMessage("Class Ended");
-               // ApplyJob(jobPosting.getPostID());
+                EndClass(jobPosting.getPostID());
             }
         });
 
