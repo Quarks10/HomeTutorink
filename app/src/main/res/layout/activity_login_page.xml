@@ -65,8 +65,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="30dp"
-            android:paddingBottom="30dp"></LinearLayout>
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"></LinearLayout>
 
         <TextView
             android:id="@+id/mode_text"
