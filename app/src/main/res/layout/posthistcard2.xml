@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,53 +8,50 @@
         android:id="@+id/dashboardCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp">
+        android:layout_margin="15dp"
+        app:cardBackgroundColor="#E9E9E9"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="7dp"
+            android:layout_weight="0.2"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/dashCardNameTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.2"
-                android:orientation="vertical">
+                android:text="Syahir"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/dashCardNameTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Syahir"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+            <TextView
+                android:id="@+id/dashCardTutorTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tutor: Pn. Aliza"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/dashCardTutorTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tutor: Pn. Aliza"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+            <TextView
+                android:id="@+id/dashCardSubjectTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Subject: Mathematics"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/dashCardSubjectTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Subject: Mathematics"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/dashCardTimeTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Date Start: 12/09/19"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/dashCardTimeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date Start: 12/09/19"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
