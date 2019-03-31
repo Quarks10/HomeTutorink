@@ -258,7 +258,7 @@ public class JobListPrimary extends AppCompatActivity {
         String datetimetext = jobPosting.getDate();
         datetime.setText("When: " + datetimetext);
 
-        TextView location = myLayout.findViewById(R.id.loctxt);
+        TextView location = myLayout.findViewById(R.id.addresstxt);
         if(jobPosting.getLocation().equals("In my location")){
             location.setText("Location: " + parentsAddress);
         }else{

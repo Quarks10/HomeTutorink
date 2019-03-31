@@ -155,7 +155,7 @@ public class ParentDashboardCal extends AppCompatActivity {
         ArrayList<Date> list_date = new ArrayList<>();
         ArrayList<DateData> list_date_data = new ArrayList<>();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdfday = new SimpleDateFormat("EEEE");
         Calendar calendar = new GregorianCalendar( year, month, dayOfMonth );
 
@@ -219,6 +219,8 @@ public class ParentDashboardCal extends AppCompatActivity {
                             jobsessionData.add(new SessionData(day,st,et));
                         }
 
+                        Log.d(TAG, "datedata: " + listDateData.size());
+                        Log.d(TAG, "jobsession: " + jobsessionData.size());
 
                         for (DateData dd:listDateData) {
 
@@ -226,6 +228,7 @@ public class ParentDashboardCal extends AppCompatActivity {
 
                                 if(sd.getDay().equals(dd.getDay())){
                                     generateDashboardList(childname,tutorname,subject,startdate,dd,sd);
+                                    Log.d(TAG, "getday: " + sd.getDay());
                                 }
                             }
                         }

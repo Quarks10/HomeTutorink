@@ -27,7 +27,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     ImageButton btnHomePage;
-    private static final String TAG = "AcceptJob";
+    private static final String TAG = "ViewApp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -301,7 +301,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         parentName.setText(parentname);
 
         TextView childName = myLayout.findViewById(R.id.childNametxt);
-        childName.setText(childname);
+        childName.setText("Child Name: " + childname);
 
         TextView childLevel = myLayout.findViewById(R.id.childEdulvltxt);
         if(childedulevel.equals("Primary School")){
@@ -316,7 +316,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         TextView dateTime = myLayout.findViewById(R.id.datetxt);
         dateTime.setText("DateTime: " + date);
 
-        TextView locationName = myLayout.findViewById(R.id.loctxt);
+        TextView locationName = myLayout.findViewById(R.id.addresstxt);
         if(location.equals("In my location")){
             locationName.setText("Location: " + address);
         }else{

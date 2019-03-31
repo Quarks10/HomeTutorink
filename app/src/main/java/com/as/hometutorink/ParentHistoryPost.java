@@ -83,6 +83,7 @@ public class ParentHistoryPost extends AppCompatActivity {
                             String joblocation = jobSnapshot.child("location").getValue().toString();
                             String jobdate = jobSnapshot.child("date").getValue().toString();
                             String tutor_name = jobSnapshot.child("tutor_name").getValue().toString();
+                            String tutor_id = jobSnapshot.child("tutor_id").getValue().toString();
 
                             ArrayList<SessionData> jobsessionData = new ArrayList<>();
                             Iterable<DataSnapshot> snapshotIterator = jobSnapshot.child("session").getChildren();
@@ -100,7 +101,7 @@ public class ParentHistoryPost extends AppCompatActivity {
                             JobPosting jobPosting = new JobPosting(jobpostid,jobchildid,jobchildname,jobedulevel,joblevel,jobsubject,joblocation,jobdate,jobsessionData,jobstatus);
 
 
-                            generateAvailableJobList(tutor_name, jobPosting);
+                            generateAvailableJobList(tutor_name,tutor_id, jobPosting);
                         }
 
                 }
@@ -116,15 +117,16 @@ public class ParentHistoryPost extends AppCompatActivity {
     }
 
 
-    public void EndClass(String postingID){
+    public void EndClass(String postingID, String tutorID){
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("jobposting");
-
+        DatabaseReference myRef2 = database.getReference("jobaccepted");
 
         myRef.child(currentUser.getUid()).child(postingID).child("status").setValue("Ended");
+        myRef2.child(tutorID).child(postingID).child("status").setValue("Ended");
 
         Intent toEndClass = new Intent(ParentHistoryPost.this, ParentHistoryPostClosed.class);
         startActivity(toEndClass);
@@ -133,7 +135,7 @@ public class ParentHistoryPost extends AppCompatActivity {
 
 
 
-    public void generateAvailableJobList(String tutorName, final JobPosting jobPosting) {
+    public void generateAvailableJobList(String tutorName, final String tutorID, final JobPosting jobPosting) {
 
         LinearLayout mainLayout = findViewById(R.id.postHistoryOngoingLayout);
 
@@ -146,7 +148,7 @@ public class ParentHistoryPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showMessage("Class Ended");
-                EndClass(jobPosting.getPostID());
+                EndClass(jobPosting.getPostID(), tutorID);
             }
         });
 

@@ -66,23 +66,6 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/jobhistory_sidebar"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="20dp"
-                        android:background="#34495E"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Job History"
-                        android:textAlignment="center"
-                        android:textColor="@android:color/background_light" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
@@ -128,6 +111,23 @@
                         android:background="#34495E"
                         android:fontFamily="sans-serif-medium"
                         android:text="Accept Jobs"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/jobhistory_sidebar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="#34495E"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Job History"
                         android:textAlignment="center"
                         android:textColor="@android:color/background_light" />
                 </LinearLayout>

@@ -3,6 +3,7 @@ package com.as.hometutorink;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -32,6 +33,7 @@ public class TutorDashboardCal extends AppCompatActivity {
     FirebaseAuth mAuth;
     ImageButton btnHomePage;
     CalendarView cv;
+    private static final String TAG = "TutorDB";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +61,9 @@ public class TutorDashboardCal extends AppCompatActivity {
         cv.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                 removeAllViewsInDaysLayout();
 
-                EnableEmptyLayout();
-                removeAllViewsInDaysLayout();
                 final ArrayList<DateData> listDateData = getListDateData(year,month,dayOfMonth);
-               // generateDashBoard(listDateData);
-
                 readData(new FirebaseCallbackTutorDashboard() {
                     @Override
                     public void onCallBack(final ArrayList<String> onGoingJob, final ArrayList<String> parentKey) {
@@ -72,6 +71,7 @@ public class TutorDashboardCal extends AppCompatActivity {
                         getParentsData(new TutorAcceptJobsPrimary.FirebaseCallbackAcceptJob() {
                             @Override
                             public void onCallBack(ArrayList<Parent> parent) {
+
 
                                 for (int i = 0; i<onGoingJob.size(); i++){
 
@@ -171,7 +171,7 @@ public class TutorDashboardCal extends AppCompatActivity {
         ArrayList<Date> list_date = new ArrayList<>();
         ArrayList<DateData> list_date_data = new ArrayList<>();
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdfday = new SimpleDateFormat("EEEE");
         Calendar calendar = new GregorianCalendar( year, month, dayOfMonth );
 
@@ -202,8 +202,6 @@ public class TutorDashboardCal extends AppCompatActivity {
 
 
     }
-
-
 
 
     private void readData(final FirebaseCallbackTutorDashboard firebaseCallbackTutorDashboard){
@@ -266,52 +264,46 @@ public class TutorDashboardCal extends AppCompatActivity {
     }
 
 
-    public void generateDashBoard(String post_id, String parent_id, final Parent currparent, final ArrayList<DateData> dateData){
+    public void generateDashBoard(final String post_id, String parent_id, final Parent currparent, final ArrayList<DateData> dateData){
 
         DatabaseReference refposting = FirebaseDatabase.getInstance().getReference("jobposting");
-        refposting.child(parent_id).addListenerForSingleValueEvent(new ValueEventListener() {
+        refposting.child(parent_id).child(post_id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot ds: dataSnapshot.getChildren()) {
+                EnableEmptyLayout();
+                String parentname = currparent.getFirst_name() + " " + currparent.getLast_name();
+                String childname = dataSnapshot.child("child_name").getValue().toString();
+                String childlevel = dataSnapshot.child("level").getValue().toString();
+                String childedulevel = dataSnapshot.child("edu_level").getValue().toString();
+                String location = dataSnapshot.child("location").getValue().toString();
+                String address = currparent.getAddress();
+                String subject = dataSnapshot.child("subject").getValue().toString();
+                String datetime = dataSnapshot.child("date").getValue().toString();
 
+                ArrayList<SessionData> jobsessionData = new ArrayList<>();
+                Iterable<DataSnapshot> snapshotIterator = dataSnapshot.child("session").getChildren();
+                Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
 
-                    if(ds.child("status").getValue().equals("OnGoing")){
+                while (iterator.hasNext()) {
+                    DataSnapshot next = (DataSnapshot) iterator.next();
+                    String day = next.child("day").getValue().toString();
+                    String st = next.child("start_time").getValue().toString();
+                    String et = next.child("end_time").getValue().toString();
+                    jobsessionData.add(new SessionData(day,st,et));
+                }
 
+                for (DateData dd:dateData) {
 
-                        String parentname = currparent.getFirst_name() + " " + currparent.getLast_name();
-                        String childname = ds.child("child_name").getValue().toString();
-                        String childlevel = ds.child("level").getValue().toString();
-                        String childedulevel = ds.child("edu_level").getValue().toString();
-                        String location = ds.child("location").getValue().toString();
-                        String address = currparent.getAddress();
-                        String subject = ds.child("subject").getValue().toString();
-                        String datetime = ds.child("date").getValue().toString();
+                    for (SessionData sd:jobsessionData) {
 
-                        ArrayList<SessionData> jobsessionData = new ArrayList<>();
-                        Iterable<DataSnapshot> snapshotIterator = ds.child("session").getChildren();
-                        Iterator<DataSnapshot> iterator = snapshotIterator.iterator();
-
-                        while (iterator.hasNext()) {
-                            DataSnapshot next = (DataSnapshot) iterator.next();
-                            String day = next.child("day").getValue().toString();
-                            String st = next.child("start_time").getValue().toString();
-                            String et = next.child("end_time").getValue().toString();
-                            jobsessionData.add(new SessionData(day,st,et));
-                        }
-
-                        for (DateData dd:dateData) {
-
-                            for (SessionData sd:jobsessionData) {
-
-                                if(sd.getDay().equals(dd.getDay())){
-                                    generateDashboardList(childname,childlevel,childedulevel,location,address,subject,datetime,dd,sd);
-                                }
-                            }
+                        if(sd.getDay().equals(dd.getDay())){
+                            generateDashboardList(childname,childlevel,childedulevel,location,address,subject,datetime,dd,sd);
                         }
                     }
                 }
-                DisableEmptyLayout();
+
+            DisableEmptyLayout();
             }
 
             @Override

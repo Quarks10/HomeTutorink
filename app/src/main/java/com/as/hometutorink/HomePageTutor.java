@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class HomePageTutor extends AppCompatActivity {
 
-    Button dashboard, job_list, job_history, accept_jobs, messages, income, logout;
+    Button dashboard, job_list, job_history, job_application, accept_jobs, messages, income, logout;
     FirebaseAuth mAuth;
 
     @Override
@@ -21,6 +21,7 @@ public class HomePageTutor extends AppCompatActivity {
         dashboard = findViewById(R.id.dashboard_sidebar_tutor);
         job_list = findViewById(R.id.joblist_sidebar);
         job_history = findViewById(R.id.jobhistory_sidebar);
+        job_application = findViewById(R.id.jobApp_sidebar);
         accept_jobs = findViewById(R.id.acceptjobs_sidebar);
         messages = findViewById(R.id.message_sidebar_tutor);
         income = findViewById(R.id.income_earned_tutor);
@@ -40,6 +41,14 @@ public class HomePageTutor extends AppCompatActivity {
             public void onClick(View view) {
                 Intent toJobList = new Intent(HomePageTutor.this,JobListPrimary.class);
                 startActivity(toJobList);
+            }
+        });
+
+        job_application.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toJobApplication = new Intent(HomePageTutor.this,TutorJobAppPending.class);
+                startActivity(toJobApplication);
             }
         });
 
