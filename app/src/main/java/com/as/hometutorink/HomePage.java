@@ -65,7 +65,7 @@ public class HomePage extends AppCompatActivity {
         messages.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMessages = new Intent(HomePage.this,Message.class);
+                Intent toMessages = new Intent(HomePage.this,HomeMessage.class);
                 startActivity(toMessages);
             }
         });

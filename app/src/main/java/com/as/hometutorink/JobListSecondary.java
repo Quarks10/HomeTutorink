@@ -217,7 +217,7 @@ public class JobListSecondary extends AppCompatActivity {
         contactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMessage = new Intent(getApplicationContext(),Message.class);
+                Intent toMessage = new Intent(getApplicationContext(),MessageContentTutor.class);
                 startActivity(toMessage);
             }
         });

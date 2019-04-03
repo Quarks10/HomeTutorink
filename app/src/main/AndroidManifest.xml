@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TutorJobAppPending"></activity>
+        <activity android:name=".MessageContentTutor"></activity>
+        <activity android:name=".HomeMessageTutor" />
+        <activity android:name=".TutorJobAppPending" />
         <activity android:name=".TutorJobAppReject" />
         <activity android:name=".JobHistoryEnded" />
         <activity android:name=".MessageContent" />
@@ -30,15 +32,6 @@
         <activity android:name=".TutorAcceptJobsPrimary" />
         <activity android:name=".TutorRequestViewApp" />
         <activity android:name=".TutorRequestOpen" />
-        <activity android:name=".ChildDetail" />
-        <activity
-            android:name=".parentSideNav"
-            android:label="@string/title_activity_parent_side_nav"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Message"
-            android:label="@string/title_activity_message"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".HireTutor" />
         <activity android:name=".ChildInfo" />
         <activity android:name=".SignUp" />

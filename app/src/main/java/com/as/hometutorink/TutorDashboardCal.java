@@ -49,7 +49,46 @@ public class TutorDashboardCal extends AppCompatActivity {
                 startActivity(toHomePage);
             }
         });
+        runFirstTime();
         init();
+    }
+
+    private void runFirstTime(){
+        cv = findViewById(R.id.calendarViewTutor);
+
+        Date date = new Date(cv.getDate());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        removeAllViewsInDaysLayout();
+        final ArrayList<DateData> listDateData = getListDateData(year,month,day);
+        readData(new FirebaseCallbackTutorDashboard() {
+            @Override
+            public void onCallBack(final ArrayList<String> onGoingJob, final ArrayList<String> parentKey) {
+
+                getParentsData(new TutorAcceptJobsPrimary.FirebaseCallbackAcceptJob() {
+                    @Override
+                    public void onCallBack(ArrayList<Parent> parent) {
+
+
+                        for (int i = 0; i<onGoingJob.size(); i++){
+
+                            Parent currparent = new Parent();
+
+                            for (Parent tmp: parent) {
+                                if(tmp.getParentID().equals(parentKey.get(i))){
+                                    currparent = tmp;
+                                }
+                            }
+                            generateDashBoard(onGoingJob.get(i), parentKey.get(i),currparent, listDateData);
+                        }
+                    }
+                });
+            }
+        });
     }
 
     public void init() {

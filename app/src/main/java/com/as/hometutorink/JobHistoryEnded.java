@@ -199,7 +199,7 @@ public class JobHistoryEnded extends AppCompatActivity {
         contactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMessage = new Intent(JobHistoryEnded.this,Message.class);
+                Intent toMessage = new Intent(JobHistoryEnded.this,MessageContentTutor.class);
                 startActivity(toMessage);
             }
         });

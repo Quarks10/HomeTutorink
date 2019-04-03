@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MessageContent extends AppCompatActivity {
+public class MessageContentTutor extends AppCompatActivity {
 
     ImageButton btnHomePage;
     FirebaseAuth mAuth;
@@ -16,7 +16,7 @@ public class MessageContent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_message_content);
+        setContentView(R.layout.activity_message_content_tutor);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -24,9 +24,10 @@ public class MessageContent extends AppCompatActivity {
         btnHomePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toHomePage = new Intent(getApplicationContext(),HomePage.class);
+                Intent toHomePage = new Intent(getApplicationContext(),HomePageTutor.class);
                 startActivity(toHomePage);
             }
         });
+
     }
 }

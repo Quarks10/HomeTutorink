@@ -190,7 +190,7 @@ public class TutorJobAppPending extends AppCompatActivity {
         contactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMessage = new Intent(TutorJobAppPending.this,Message.class);
+                Intent toMessage = new Intent(TutorJobAppPending.this,MessageContentTutor.class);
                 startActivity(toMessage);
             }
         });

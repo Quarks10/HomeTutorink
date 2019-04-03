@@ -269,7 +269,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         setTutorValue(currentuser.getUid(),postingID,parentID);
 
         Intent toDashboard = new Intent(TutorAcceptJobsPrimary.this, TutorDashboardCal.class);
-       // startActivity(toDashboard);
+        startActivity(toDashboard);
     }
 
 
@@ -292,7 +292,7 @@ public class TutorAcceptJobsPrimary extends AppCompatActivity {
         contactbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toMessage = new Intent(TutorAcceptJobsPrimary.this,Message.class);
+                Intent toMessage = new Intent(TutorAcceptJobsPrimary.this,MessageContentTutor.class);
                 startActivity(toMessage);
             }
         });

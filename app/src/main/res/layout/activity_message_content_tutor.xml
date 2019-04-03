@@ -4,56 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Message"
-    tools:showIn="@layout/app_bar_message">
+    tools:context=".MessageContentTutor">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="600dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#5A5AD0"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <ImageButton
+            android:id="@+id/homebtn"
+            android:layout_width="59dp"
+            android:layout_height="67dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/homs" />
+
+        <TextView
+            android:id="@+id/textView12"
             android:layout_width="match_parent"
-            android:layout_height="225dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Messages"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp" />
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="87dp"
-                android:layout_weight="1"
-                android:visibility="visible"
-                tools:srcCompat="@drawable/tutor_anita" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/txt_chatUser"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"
-                android:layout_weight="1"
-                android:padding="10dp"
-                android:text="Puan Anita"
-                android:textAlignment="center"
-                android:textSize="30sp" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Atiq Shariff"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:layout_height="match_parent"
+            android:layout_margin="15dp">
 
             <LinearLayout
+                android:id="@+id/messagesll"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -70,7 +82,8 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary">
+                        android:layout_margin="7dp"
+                        android:background="#ADD8E6">
 
                         <TextView
                             android:id="@+id/textView25"
@@ -78,6 +91,7 @@
                             android:layout_height="match_parent"
                             android:padding="5dp"
                             android:text="Hi, are you available for any private tutor job for my primary school children?"
+                            android:textColor="@android:color/black"
                             android:textSize="18sp" />
                     </FrameLayout>
                 </LinearLayout>
@@ -90,7 +104,8 @@
                     <FrameLayout
                         android:layout_width="224dp"
                         android:layout_height="wrap_content"
-                        android:background="#B4B2B2">
+                        android:layout_margin="7dp"
+                        android:background="#D3D3D3">
 
                         <TextView
                             android:id="@+id/textView26"
@@ -98,6 +113,7 @@
                             android:layout_height="match_parent"
                             android:padding="5dp"
                             android:text="Yes sir, currently available to be hire. May I know your location sir?"
+                            android:textColor="@android:color/black"
                             android:textSize="18sp" />
                     </FrameLayout>
 
@@ -123,45 +139,50 @@
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimary">
+                        android:layout_margin="7dp"
+                        android:background="#ADD8E6">
 
                         <TextView
                             android:id="@+id/textView27"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:padding="5dp"
-                            android:text="Live in Ampang area, Pandan Indah. Able to accomodate?"
+                            android:text="Lives in Bandar Cassia. Able to accomodate?"
+                            android:textColor="@android:color/black"
                             android:textSize="18sp" />
                     </FrameLayout>
                 </LinearLayout>
 
             </LinearLayout>
+
         </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:layout_width="304dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Enter your message here"
-                android:inputType="textPersonName" />
-
-            <Button
-                android:id="@+id/button_send_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="SEND" />
-        </LinearLayout>
     </LinearLayout>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.69" />
+        android:layout_margin="10dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <EditText
+            android:layout_width="304dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Enter your message here"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/button_send_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEND" />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
